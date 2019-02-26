@@ -35,7 +35,7 @@
     "watch-css": "nodemon --watch src/ --ext scss --exec \"npm run css-compile\"",
     "watch-js": "nodemon --watch src/ --ext js --exec \"npm run js-compile\"",
     "check-plugin-meta": "node -r esm scripts/check-plugin-meta.js",
-    "build": "npm-run-all lint prettify css js",
+    "build": "npm-run-all prettify lint css js",
     "lint": "eslint --ext .js,.vue ./",
     "prettify": "prettier --write \"**/*.{js,json,md,scss,vue}\"",
     "release": "npm run build && standard-version"
@@ -81,6 +81,7 @@
     "rollup-plugin-commonjs": "^9.2.1",
     "rollup-plugin-node-resolve": "^4.0.1",
     "shx": "^0.3.2",
+    "standard-version": "^5.0.0",
     "terser": "^3.16.1",
     "vue": "^2.6.7"
   }
