@@ -3,6 +3,7 @@ import path from 'path'
 import babel from 'rollup-plugin-babel'
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
+import VuePlugin from 'rollup-plugin-vue'
 import { camelCase } from 'lodash'
 import { name, dependencies } from '../package.json'
 
@@ -21,7 +22,12 @@ const externalExcludes = [
 const baseConfig = {
   input: path.resolve(src, 'index.js'),
   external: Object.keys(dependencies),
-  plugins: [resolve({ external: ['vue'] }), commonjs(), babel({ exclude: 'node_modules/**' })]
+  plugins: [
+    resolve({ external: ['vue'] }),
+    commonjs(),
+    babel({ exclude: 'node_modules/**' }),
+    VuePlugin()
+  ]
 }
 
 // Ensure dist directory exists

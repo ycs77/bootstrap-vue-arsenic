@@ -1,3 +1,3 @@
-# Bootstrap vue Arsenic
+# Bootstrap Vue Arsenic
 
 The bootstrap vue admin components.
