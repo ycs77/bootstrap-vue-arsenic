@@ -1,0 +1,5 @@
+.nuxt/
+node_modules/
+dist/
+es/
+nuxt/plugin.template.js
