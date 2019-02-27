@@ -4,8 +4,69 @@
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var script = {
-  name: 'b-menu'
+  name: 'b-nav-sidebar',
+  props: {//
+  },
+
+  data() {
+    return {
+      active: '1',
+      items: [{
+        name: '1',
+        label: 'Test'
+      }, {
+        name: '2',
+        label: 'Test'
+      }, {
+        name: '3',
+        label: 'Test'
+      }, {
+        name: '4',
+        label: 'Test'
+      }, {
+        name: '5',
+        label: 'Test'
+      }, {
+        name: '6',
+        label: 'Test'
+      }]
+    };
+  },
+
+  methods: {
+    clickItem(name) {
+      this.active = name;
+    }
+
+  }
 };
 
 function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
@@ -101,14 +162,64 @@ var __vue_render__ = function() {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
-  return _vm._m(0)
+  return _c("div", { staticClass: "nav-sidebar nav-sidebar-light" }, [
+    _c("div", { staticClass: "nav-sidebar-inner-scroll" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "nav-sidebar-items" },
+        _vm._l(_vm.items, function(item) {
+          return _c(
+            "li",
+            {
+              class: { active: _vm.active === item.name },
+              on: {
+                click: function($event) {
+                  return _vm.clickItem(item.name)
+                }
+              }
+            },
+            [
+              _c("a", { attrs: { href: "javascript: void(0)" } }, [
+                _vm._m(1, true),
+                _vm._v(" "),
+                _c("div", { staticClass: "nav-sidebar-item-name" }, [
+                  _vm._v("\n            " + _vm._s(item.label) + "\n          ")
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "badge badge-pill" }, [
+                  _vm._v("\n            1\n          ")
+                ])
+              ])
+            ]
+          )
+        }),
+        0
+      )
+    ])
+  ])
 };
 var __vue_staticRenderFns__ = [
   function() {
     var _vm = this;
     var _h = _vm.$createElement;
     var _c = _vm._self._c || _h;
-    return _c("div", [_c("h1", [_vm._v("BMenu")])])
+    return _c("div", { staticClass: "nav-sidebar-header" }, [
+      _c("div", [
+        _c("div", { staticClass: "nav-sidebar-header-text" }, [
+          _vm._v("\n          BNavSidebar\n        ")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this;
+    var _h = _vm.$createElement;
+    var _c = _vm._self._c || _h;
+    return _c("div", { staticClass: "nav-sidebar-item-icon" }, [
+      _c("i", { staticClass: "fab fa-github" })
+    ])
   }
 ];
 __vue_render__._withStripped = true;
@@ -127,7 +238,7 @@ __vue_render__._withStripped = true;
   
 
   
-  var menu = normalizeComponent_1(
+  var BNavSidebar = normalizeComponent_1(
     { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
     __vue_inject_styles__,
     __vue_script__,
@@ -138,8 +249,8 @@ __vue_render__._withStripped = true;
     undefined
   );
 
-const components = {
-  BMenu: menu
+var components = {
+  BNavSidebar
 };
 
 const install = Vue => {

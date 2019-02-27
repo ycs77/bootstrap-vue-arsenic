@@ -1,8 +1,4 @@
-import BMenu from './components/menu'
-
-const components = {
-  BMenu
-}
+import components from './components'
 
 const install = Vue => {
   Object.keys(components).forEach(key => {

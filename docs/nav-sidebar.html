@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Menu - Bootstrap Vue Arsenic</title>
+  <title>Nav sidebar - Bootstrap Vue Arsenic</title>
 
   <!-- Preload -->
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" as="style">
+  <link rel="preload" href="css/bootstrap-vue-arsenic.css" as="style">
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.min.js" as="script">
   <link rel="preload" href="js/bootstrap-vue-arsenic.js" as="script">
 
@@ -15,6 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/brands.css" integrity="sha384-BKw0P+CQz9xmby+uplDwp82Py8x1xtYPK3ORn/ZSoe6Dk3ETP59WCDnX+fI1XCKK" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/fontawesome.css" integrity="sha384-4aon80D8rXCGx9ayDt85LbyUHeMWd3UiBaWliBlJ53yzm9hqN21A+o1pqoyK04h+" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/bootstrap-vue-arsenic.css">
 
   <style>
     header.jumbotron {
@@ -33,7 +35,11 @@
 
 <body>
 
-  <header class="jumbotron jumbotron-fluid text-center">
+  <div id="app">
+    <b-nav-sidebar></b-nav-sidebar>
+  </div>
+
+  <!-- <header class="jumbotron jumbotron-fluid text-center">
     <h1>Bootstrap Vue Arsenic</h1>
 
     <div class="mt-5">
@@ -45,10 +51,10 @@
   </header>
 
   <div class="container my-5 text-center">
-    <h2>Menu</h2>
+    <h2>Nav sidebar</h2>
 
     <div id="app">
-      <b-menu />
+      <b-nav-sidebar />
     </div>
   </div>
 
@@ -57,7 +63,7 @@
       <i class="fab fa-github"></i>
       Github
     </a>
-  </footer>
+  </footer> -->
 
   <!-- JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.7/vue.min.js"></script>

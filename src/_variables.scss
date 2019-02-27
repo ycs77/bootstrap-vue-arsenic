@@ -1,0 +1,38 @@
+// Variables
+//
+// Variables should follow the `$component-state-property-size` formula for
+// consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
+
+// Nav sidebar
+
+$nav-sidebar-width:                   220px !default;
+$nav-sidebar-top:                     0px !default;
+$nav-sidebar-bg-color:                $white !default;
+$nav-sidebar-box-shadow-color:        $gray-300 !default;
+$nav-sidebar-transition-duration:     .3s !default;
+
+$nav-sidebar-header-padding-y:        .625rem !default;
+$nav-sidebar-header-padding-x:        1rem !default;
+
+$nav-sidebar-item-padding-y:          .75rem !default;
+$nav-sidebar-item-padding-x:          1.25rem !default;
+
+$nav-sidebar-light-color:             $gray-900 !default;
+$nav-sidebar-light-bg-color:          $gray-100 !default;
+$nav-sidebar-light-box-shadow-color:  $gray-300 !default;
+$nav-sidebar-light-header-hover-bg:   rgba(color-yiq($white), 0.06) !default;
+$nav-sidebar-light-item-color:        $gray-600 !default;
+$nav-sidebar-light-item-hover-color:  darken($gray-600, 20%) !default;
+$nav-sidebar-light-item-hover-bg:     rgba(color-yiq($white), 0.04) !default;
+$nav-sidebar-light-item-active-color: $primary !default;
+$nav-sidebar-light-item-badge-bg:     rgba(color-yiq($white), 0.08) !default;
+
+$nav-sidebar-dark-color:              $gray-100 !default;
+$nav-sidebar-dark-bg-color:           $gray-900 !default;
+$nav-sidebar-dark-box-shadow-color:   $gray-700 !default;
+$nav-sidebar-dark-header-hover-bg:    rgba(color-yiq($black), 0.06) !default;
+$nav-sidebar-dark-item-color:         $gray-500 !default;
+$nav-sidebar-dark-item-hover-color:   lighten($gray-500, 20%) !default;
+$nav-sidebar-dark-item-hover-bg:      rgba(color-yiq($black), 0.06) !default;
+$nav-sidebar-dark-item-active-color:  $primary !default;
+$nav-sidebar-dark-item-badge-bg:      rgba(color-yiq($black), 0.08) !default;
