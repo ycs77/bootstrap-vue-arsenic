@@ -4,12 +4,14 @@ import babel from 'rollup-plugin-babel'
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import VuePlugin from 'rollup-plugin-vue'
+import alias from 'rollup-plugin-alias'
 import { camelCase } from 'lodash'
 import { name, dependencies } from '../package.json'
 
 const base = path.resolve(__dirname, '..')
 const src = path.resolve(base, 'src')
 const dist = path.resolve(base, 'dist')
+const cPath = path.resolve(base, 'src/components')
 
 // Libs in `external` will not be bundled to dist,
 // since they are expected to be provided later.
@@ -26,7 +28,11 @@ const baseConfig = {
     resolve({ external: ['vue'] }),
     commonjs(),
     babel({ exclude: 'node_modules/**' }),
-    VuePlugin()
+    VuePlugin(),
+    alias({
+      '~': src,
+      '~c': cPath
+    })
   ]
 }
 

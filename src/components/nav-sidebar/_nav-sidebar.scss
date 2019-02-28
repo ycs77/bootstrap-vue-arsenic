@@ -13,7 +13,13 @@
     width: 100%;
     padding: $nav-sidebar-header-padding-y $nav-sidebar-header-padding-x;
     text-decoration: $link-decoration;
-    transition: padding $nav-sidebar-transition-duration;
+    user-select: none;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
   }
 
   .badge {
@@ -31,7 +37,7 @@
 .nav-sidebar-header {
   position: relative;
 
-  > div, > a, > button {
+  .nav-sidebar-header-content {
     display: flex;
     align-items: center;
     width: 100%;
@@ -40,11 +46,12 @@
     background-color: transparent;
     font-weight: 600;
     text-align: left;
-    transition: padding $nav-sidebar-transition-duration;
+    transition: color $nav-sidebar-item-transition-duration, background-color $nav-sidebar-item-transition-duration;
   }
-  > a, > button {
-    &:hover {
-      outline: none;
+
+  .avatar {
+    ~ div, ~ a, ~ button {
+      margin-left: $nav-sidebar-header-gutter;
     }
   }
 
@@ -55,24 +62,55 @@
 }
 
 .nav-sidebar-items {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-
-  > li {
-    > a {
+  li {
+    .nav-sidebar-item {
+      display: flex;
+      align-items: center;
+      width: 100%;
       padding: $nav-sidebar-item-padding-y $nav-sidebar-item-padding-x;
-      background-color: transparent;
+      cursor: pointer;
+      user-select: none;
+      transition: color $nav-sidebar-item-transition-duration, background-color $nav-sidebar-item-transition-duration;
+      outline: none;
+
+      .badge {
+        transition: color $nav-sidebar-item-transition-duration, background-color $nav-sidebar-item-transition-duration;
+      }
+    }
+
+    &.no-icon .nav-sidebar-item {
+      padding-left: calc(
+        #{
+          $nav-sidebar-item-padding-x +
+          $nav-sidebar-item-icon-margin-right
+        } +
+        #{$nav-sidebar-item-icon-width}
+      );
+    }
+
+    &.show {
+      .nav-sidebar-sub-icon {
+        transform: rotate(180deg);
+      }
     }
   }
 }
-.nav-sidebar-item-icon {
-  width: 1.25em;
-  text-align: center;
-  margin-right: .5rem;
+.nav-sidebar-sub-items {
+  &.v-enter-active,
+  &.v-leave-active {
+    transition: height $nav-sidebar-transition-duration;
+  }
 }
 .nav-sidebar-item-name {
   flex-grow: 1;
+}
+.nav-sidebar-item-icon {
+  width: $nav-sidebar-item-icon-width;
+  text-align: center;
+  margin-right: $nav-sidebar-item-icon-margin-right;
+}
+.nav-sidebar-sub-icon {
+  transition: transform $nav-sidebar-transition-duration;
 }
 
 .nav-sidebar-light {
@@ -86,34 +124,39 @@
       color: $nav-sidebar-light-color;
     }
     > a, > button {
-      &:hover, &:focus {
-        background-color: $nav-sidebar-light-header-hover-bg;
+      @include hover-focus {
+        background-color: $nav-sidebar-light-header-hover-bg-color;
       }
     }
   }
 
   .nav-sidebar-items {
-    > li {
-      > a {
+    li {
+      .nav-sidebar-item {
         color: $nav-sidebar-light-item-color;
-        &:hover, &:focus {
+        @include hover-focus {
           color: $nav-sidebar-light-item-hover-color;
-          background-color: $nav-sidebar-light-item-hover-bg;
+          background-color: $nav-sidebar-light-item-hover-bg-color;
         }
       }
 
-      &.active > a {
-        color: color-yiq($nav-sidebar-light-item-active-color) !important;
-        background-color: $nav-sidebar-light-item-active-color !important;
-        .badge {
-          color: $nav-sidebar-light-item-active-color !important;
-          background-color: color-yiq($nav-sidebar-light-item-active-color) !important;
+      &.active > .nav-sidebar-item,
+      & > .nav-sidebar-item.active {
+        color: $nav-sidebar-light-item-active-color;
+        background-color: $nav-sidebar-light-item-active-bg-color;
+      }
+
+      &.active > .nav-sidebar-item-switch,
+      & > .nav-sidebar-item-switch.active {
+        background-color: transparent;
+        @include hover-focus {
+          background-color: $nav-sidebar-light-item-hover-bg-color;
         }
       }
     }
 
     .badge {
-      background-color: $nav-sidebar-light-item-badge-bg;
+      background-color: $nav-sidebar-light-item-badge-bg-color;
     }
   }
 }
@@ -128,34 +171,43 @@
       color: $nav-sidebar-dark-color;
     }
     > a, > button {
-      &:hover, &:focus {
-        background-color: $nav-sidebar-dark-header-hover-bg;
+      @include hover-focus {
+        background-color: $nav-sidebar-dark-header-hover-bg-color;
       }
     }
   }
 
   .nav-sidebar-items {
-    > li {
-      > a {
+    li {
+      .nav-sidebar-item {
         color: $nav-sidebar-dark-item-color;
-        &:hover, &:focus {
+        @include hover-focus {
           color: $nav-sidebar-dark-item-hover-color;
-          background-color: $nav-sidebar-dark-item-hover-bg;
+          background-color: $nav-sidebar-dark-item-hover-bg-color;
         }
       }
 
-      &.active > a {
-        color: color-yiq($nav-sidebar-dark-item-active-color) !important;
-        background-color: $nav-sidebar-dark-item-active-color !important;
+      &.active > .nav-sidebar-item,
+      & > .nav-sidebar-item.active {
+        color: color-yiq($nav-sidebar-dark-item-active-color);
+        background-color: $nav-sidebar-dark-item-active-color;
         .badge {
-          color: $nav-sidebar-dark-item-active-color !important;
-          background-color: color-yiq($nav-sidebar-dark-item-active-color) !important;
+          color: color-yiq($nav-sidebar-dark-item-active-color);
+          // background-color: $nav-sidebar-dark-item-active-color;
+        }
+      }
+
+      &.active > .nav-sidebar-item-switch,
+      & > .nav-sidebar-item-switch.active {
+        background-color: transparent;
+        @include hover-focus {
+          background-color: $nav-sidebar-dark-item-hover-bg-color;
         }
       }
     }
 
     .badge {
-      background-color: $nav-sidebar-dark-item-badge-bg;
+      background-color: $nav-sidebar-dark-item-badge-bg-color;
     }
   }
 }

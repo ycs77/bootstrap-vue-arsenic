@@ -1,6 +1,7 @@
 *.iml
 *.log
 *.swp
+*.cmd
 .DS_Store
 .idea/
 .nuxt/
