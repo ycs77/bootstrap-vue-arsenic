@@ -5,12 +5,26 @@ export default {
   functional: true,
   props: {
     // Options:
-    // * NOT SET (auto):
-    //   If nuxt-link exist, auto use it; next is router-link; last is tag a(original link).
+    // * auto:
+    //   It will automatically find if there is a `nuxt-link` or `router-link`,
+    //   if it is not found, the tag <a> will be used.
     // * router-link
     // * nuxt-link
     // * a
-    type: String,
+    // * none
+    type: {
+      type: String,
+      default: 'auto',
+      validator(value) {
+        return [
+          'auto',
+          'router-link',
+          'nuxt-link',
+          'a',
+          'none'
+        ].some(v => v === value)
+      }
+    },
 
     to: [String, Object],
 
@@ -45,51 +59,65 @@ export default {
   render(h, context) {
     let name
 
-    if (
-      context.props.type === 'nuxt-link' ||
-      (!context.props.type && componentIsExist('nuxt-link'))
-    ) {
-      // Nuxt link
-      name = 'nuxt-link'
-      context.data = Object.assign({}, context.data, {
-        props: {
-          to: context.props.to,
-          noPrefetch: context.props.noPrefetch,
-          prefetchedClass: context.props.prefetchedClass
-        }
-      })
+    if (context.props.to) {
+      if (
+        context.props.type === 'nuxt-link' ||
+        (context.props.type === 'auto' && componentIsExist('nuxt-link'))
+      ) {
+        // Nuxt link
+        name = 'nuxt-link'
+        context.data = Object.assign({}, context.data, {
+          props: {
+            to: context.props.to,
+            noPrefetch: context.props.noPrefetch,
+            prefetchedClass: context.props.prefetchedClass
+          }
+        })
 
-    } else if (
-      context.props.type === 'router-link' ||
-      (!context.props.type && componentIsExist('router-link'))
-    ) {
-      // Router link
-      name = 'router-link'
-      context.data = Object.assign({}, context.data, {
-        props: {
-          to: context.props.to,
-          tag: context.props.tag,
-          exact: context.props.exact,
-          append: context.props.append,
-          replace: context.props.replace,
-          activeClass: context.props.activeClass,
-          exactActiveClass: context.props.exactActiveClass,
-          event: context.props.event
-        }
-      })
+      } else if (
+        context.props.type === 'router-link' ||
+        (context.props.type === 'auto' && componentIsExist('router-link'))
+      ) {
+        // Router link
+        name = 'router-link'
+        context.data = Object.assign({}, context.data, {
+          props: {
+            to: context.props.to,
+            tag: context.props.tag,
+            exact: context.props.exact,
+            append: context.props.append,
+            replace: context.props.replace,
+            activeClass: context.props.activeClass,
+            exactActiveClass: context.props.exactActiveClass,
+            event: context.props.event
+          }
+        })
 
-    } else if (
-      context.props.type === 'a' ||
-      !context.props.type
-    ) {
-      // Original link
-      name = 'a'
-      context.data = Object.assign({}, context.data, {
-        attrs: {
-          href: context.props.to,
-          target: context.props.target
-        }
-      })
+      } else if (
+        context.props.type === 'a' ||
+        context.props.type === 'auto'
+      ) {
+        // Original link
+        name = 'a'
+        context.data = Object.assign({}, context.data, {
+          attrs: {
+            href: context.props.to,
+            target: context.props.target
+          }
+        })
+
+      } else if (
+        context.props.type === 'none'
+      ) {
+        // None
+        name = 'div'
+
+      } else {
+        throw new Error('Component auto link prop "type" is invalid.')
+      }
+    } else {
+      // None
+      name = 'div'
     }
 
     return h(name, context.data, context.children)

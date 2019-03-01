@@ -4009,12 +4009,22 @@ var AutoLink = {
   functional: true,
   props: {
     // Options:
-    // * NOT SET (auto):
-    //   If nuxt-link exist, auto use it; next is router-link; last is tag a(original link).
+    // * auto:
+    //   It will automatically find if there is a `nuxt-link` or `router-link`,
+    //   if it is not found, the tag <a> will be used.
     // * router-link
     // * nuxt-link
     // * a
-    type: String,
+    // * none
+    type: {
+      type: String,
+      default: 'auto',
+
+      validator(value) {
+        return ['auto', 'router-link', 'nuxt-link', 'a', 'none'].some(v => v === value);
+      }
+
+    },
     to: [String, Object],
     // Original link
     target: String,
@@ -4046,40 +4056,50 @@ var AutoLink = {
   render(h, context) {
     let name;
 
-    if (context.props.type === 'nuxt-link' || !context.props.type && componentIsExist('nuxt-link')) {
-      // Nuxt link
-      name = 'nuxt-link';
-      context.data = Object.assign({}, context.data, {
-        props: {
-          to: context.props.to,
-          noPrefetch: context.props.noPrefetch,
-          prefetchedClass: context.props.prefetchedClass
-        }
-      });
-    } else if (context.props.type === 'router-link' || !context.props.type && componentIsExist('router-link')) {
-      // Router link
-      name = 'router-link';
-      context.data = Object.assign({}, context.data, {
-        props: {
-          to: context.props.to,
-          tag: context.props.tag,
-          exact: context.props.exact,
-          append: context.props.append,
-          replace: context.props.replace,
-          activeClass: context.props.activeClass,
-          exactActiveClass: context.props.exactActiveClass,
-          event: context.props.event
-        }
-      });
-    } else if (context.props.type === 'a' || !context.props.type) {
-      // Original link
-      name = 'a';
-      context.data = Object.assign({}, context.data, {
-        attrs: {
-          href: context.props.to,
-          target: context.props.target
-        }
-      });
+    if (context.props.to) {
+      if (context.props.type === 'nuxt-link' || context.props.type === 'auto' && componentIsExist('nuxt-link')) {
+        // Nuxt link
+        name = 'nuxt-link';
+        context.data = Object.assign({}, context.data, {
+          props: {
+            to: context.props.to,
+            noPrefetch: context.props.noPrefetch,
+            prefetchedClass: context.props.prefetchedClass
+          }
+        });
+      } else if (context.props.type === 'router-link' || context.props.type === 'auto' && componentIsExist('router-link')) {
+        // Router link
+        name = 'router-link';
+        context.data = Object.assign({}, context.data, {
+          props: {
+            to: context.props.to,
+            tag: context.props.tag,
+            exact: context.props.exact,
+            append: context.props.append,
+            replace: context.props.replace,
+            activeClass: context.props.activeClass,
+            exactActiveClass: context.props.exactActiveClass,
+            event: context.props.event
+          }
+        });
+      } else if (context.props.type === 'a' || context.props.type === 'auto') {
+        // Original link
+        name = 'a';
+        context.data = Object.assign({}, context.data, {
+          attrs: {
+            href: context.props.to,
+            target: context.props.target
+          }
+        });
+      } else if (context.props.type === 'none') {
+        // None
+        name = 'div';
+      } else {
+        throw new Error('Component auto link prop "type" is invalid.');
+      }
+    } else {
+      // None
+      name = 'div';
     }
 
     return h(name, context.data, context.children);
@@ -4165,53 +4185,68 @@ var CollapseTransition = {
 };
 
 //
+const COMPONENT_NAME = 'BNavSidebar';
 var script = {
-  name: 'BNavSidebar',
+  name: COMPONENT_NAME,
   components: {
     AutoLink,
     CollapseTransition
   },
-  props: {//
+  props: {
+    items: {
+      type: Array,
+      required: true,
+
+      validator(items) {
+        const requiredAttrs = ['name', 'label'];
+
+        for (const i in items) {
+          const item = items[i];
+
+          if (!item.children) {
+            if (!requiredAttrs.every(v => item[v])) {
+              return false;
+            }
+          } else {
+            for (const c in item.children) {
+              const itemChild = item.children[c];
+
+              if (!requiredAttrs.every(v => itemChild[v])) {
+                return false;
+              }
+            }
+          }
+        }
+
+        return true;
+      }
+
+    },
+    active: String,
+    theme: {
+      type: String,
+      default: 'light',
+
+      validator(value) {
+        return ['light', 'dark'].some(v => v === value);
+      }
+
+    },
+    linkType: {
+      type: String,
+      default: 'auto',
+
+      validator(value) {
+        return ['auto', 'router-link', 'nuxt-link', 'a', 'none'].some(v => v === value);
+      }
+
+    }
   },
 
   data() {
     return {
-      active: '',
-      items: [{
-        name: '1',
-        label: 'Test',
-        iconClass: 'fab fa-chrome'
-      }, {
-        name: '2',
-        label: 'Test',
-        iconClass: 'fab fa-github',
-        badge: 1
-      }, {
-        name: '3',
-        label: 'Test',
-        iconClass: 'fab fa-github',
-        children: [{
-          name: '3-1',
-          label: 'Test'
-        }, {
-          name: '3-2',
-          label: 'Test'
-        }]
-      }, {
-        name: '4',
-        label: 'Test',
-        iconClass: 'fab fa-github',
-        children: [{
-          name: '4-1',
-          label: 'Test'
-        }, {
-          name: '4-2',
-          label: 'Test'
-        }, {
-          name: '4-3',
-          label: 'Test'
-        }]
-      }]
+      vItems: this.items,
+      vActive: this.active
     };
   },
 
@@ -4220,7 +4255,7 @@ var script = {
   },
   methods: {
     clickItem(item, canShowSubMenu = false) {
-      if (!canShowSubMenu && !this.$route) {
+      if (!canShowSubMenu) {
         this.updateActive(item.name);
       } else {
         this.showSubMenu(item);
@@ -4228,9 +4263,7 @@ var script = {
     },
 
     clickSubItem(item) {
-      if (!this.$route) {
-        this.updateActive(item.name);
-      }
+      this.updateActive(item.name);
     },
 
     // Methods
@@ -4242,7 +4275,7 @@ var script = {
     },
 
     updateActive(name) {
-      this.active = name;
+      this.vActive = name;
       this.$emit('on-select', name);
     },
 
@@ -4255,7 +4288,7 @@ var script = {
     },
 
     itemActive(item) {
-      return item.name === this.active || this.hasItemChild(item, this.active);
+      return item.name === this.vActive || this.hasItemChild(item, this.vActive);
     },
 
     isExistItemChildren(item) {
@@ -4268,7 +4301,7 @@ var script = {
 
     findItem(itemTo) {
       let targetItem;
-      this.items.forEach(item => {
+      this.vItems.forEach(item => {
         if (!item.children) {
           if (item.to === itemTo) {
             targetItem = item;
@@ -4295,9 +4328,9 @@ var script = {
     } // Set whether the sub menu can be displayed
 
 
-    this.items.forEach(item => {
+    this.vItems.forEach(item => {
       if (this.isExistItemChildren(item)) {
-        if (this.hasItemChild(item, this.active)) {
+        if (this.hasItemChild(item, this.vActive)) {
           this.showSubMenu(item, true);
         } else {
           this.showSubMenu(item, false);
@@ -4401,14 +4434,14 @@ var __vue_render__ = function() {
   var _vm = this;
   var _h = _vm.$createElement;
   var _c = _vm._self._c || _h;
-  return _c("div", { staticClass: "nav-sidebar nav-sidebar-light" }, [
+  return _c("div", { class: ["nav-sidebar", "nav-sidebar-" + _vm.theme] }, [
     _c("div", { staticClass: "nav-sidebar-inner-scroll" }, [
       _vm._m(0),
       _vm._v(" "),
       _c(
         "ul",
         { staticClass: "nav-sidebar-menu" },
-        _vm._l(_vm.items, function(item) {
+        _vm._l(_vm.vItems, function(item) {
           return _c(
             "li",
             {
@@ -4424,7 +4457,7 @@ var __vue_render__ = function() {
                       "auto-link",
                       {
                         staticClass: "nav-sidebar-item",
-                        attrs: { to: item.to },
+                        attrs: { to: item.to, type: _vm.linkType },
                         on: {
                           click: function($event) {
                             return _vm.clickItem(item)
@@ -4509,7 +4542,10 @@ var __vue_render__ = function() {
                                 {
                                   staticClass:
                                     "nav-sidebar-item nav-sidebar-sub-item",
-                                  attrs: { to: childItem.to },
+                                  attrs: {
+                                    to: childItem.to,
+                                    type: _vm.linkType
+                                  },
                                   on: {
                                     click: function($event) {
                                       return _vm.clickSubItem(childItem)

@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-sidebar nav-sidebar-light">
+  <div :class="['nav-sidebar', `nav-sidebar-${theme}`]">
     <div class="nav-sidebar-inner-scroll">
       <div class="nav-sidebar-header">
         <div class="nav-sidebar-header-content">
@@ -10,7 +10,7 @@
       </div>
 
       <ul class="nav-sidebar-menu">
-        <li v-for="item in items"
+        <li v-for="item in vItems"
           :class="{
             active: itemActive(item),
             show: item.show
@@ -19,6 +19,7 @@
           <template v-if="!isExistItemChildren(item)">
             <auto-link :to="item.to"
               class="nav-sidebar-item"
+              :type="linkType"
               @click="clickItem(item)"
             >
               <div class="nav-sidebar-item-icon">
@@ -51,6 +52,7 @@
                 >
                   <auto-link :to="childItem.to"
                     class="nav-sidebar-item nav-sidebar-sub-item"
+                    :type="linkType"
                     @click="clickSubItem(childItem)"
                   >
                     <div class="nav-sidebar-item-name">{{ childItem.label }}</div>
@@ -70,50 +72,66 @@
 import AutoLink from '~c/base/auto-link'
 import CollapseTransition from '~c/base/collapse-transition'
 
+const COMPONENT_NAME = 'BNavSidebar'
+
 export default {
-  name: 'BNavSidebar',
+  name: COMPONENT_NAME,
   components: {
     AutoLink,
     CollapseTransition
   },
   props: {
-    //
+    items: {
+      type: Array,
+      required: true,
+      validator(items) {
+        const requiredAttrs = ['name', 'label']
+
+        for (const i in items) {
+          const item = items[i]
+          if (!item.children) {
+            if (!requiredAttrs.every(v => item[v])) {
+              return false
+            }
+          } else {
+            for (const c in item.children) {
+              const itemChild = item.children[c]
+              if (!requiredAttrs.every(v => itemChild[v])) {
+                return false
+              }
+            }
+          }
+        }
+
+        return true
+      }
+    },
+    active: String,
+    theme: {
+      type: String,
+      default: 'light',
+      validator(value) {
+        return ['light', 'dark'].some(v => v === value)
+      }
+    },
+    linkType: {
+      type: String,
+      default: 'auto',
+      validator(value) {
+        return [
+          'auto',
+          'router-link',
+          'nuxt-link',
+          'a',
+          'none'
+        ].some(v => v === value)
+      }
+    }
   },
   data() {
     return {
-      active: '',
-      items: [
-        {
-          name: '1',
-          label: 'Test',
-          iconClass: 'fab fa-chrome'
-        },
-        {
-          name: '2',
-          label: 'Test',
-          iconClass: 'fab fa-github',
-          badge: 1
-        },
-        {
-          name: '3',
-          label: 'Test',
-          iconClass: 'fab fa-github',
-          children: [
-            { name: '3-1', label: 'Test' },
-            { name: '3-2', label: 'Test' }
-          ]
-        },
-        {
-          name: '4',
-          label: 'Test',
-          iconClass: 'fab fa-github',
-          children: [
-            { name: '4-1', label: 'Test' },
-            { name: '4-2', label: 'Test' },
-            { name: '4-3', label: 'Test' }
-          ]
-        }
-      ]
+      vItems: this.items,
+      vActive: this.active
     }
   },
   watch: {
@@ -121,16 +139,14 @@ export default {
   },
   methods: {
     clickItem(item, canShowSubMenu = false) {
-      if (!canShowSubMenu && !this.$route) {
+      if (!canShowSubMenu) {
         this.updateActive(item.name)
       } else {
         this.showSubMenu(item)
       }
     },
     clickSubItem(item) {
-      if (!this.$route) {
-        this.updateActive(item.name)
-      }
+      this.updateActive(item.name)
     },
 
     // Methods
@@ -141,7 +157,7 @@ export default {
       }
     },
     updateActive(name) {
-      this.active = name
+      this.vActive = name
       this.$emit('on-select', name)
     },
     updateRouter() {
@@ -151,7 +167,7 @@ export default {
       }
     },
     itemActive(item) {
-      return item.name === this.active || this.hasItemChild(item, this.active)
+      return item.name === this.vActive || this.hasItemChild(item, this.vActive)
     },
     isExistItemChildren(item) {
       return !!(item.children && item.children.length)
@@ -164,7 +180,7 @@ export default {
     findItem(itemTo) {
       let targetItem
 
-      this.items.forEach(item => {
+      this.vItems.forEach(item => {
         if (!item.children) {
           if (item.to === itemTo) {
             targetItem = item
@@ -190,9 +206,9 @@ export default {
     }
 
     // Set whether the sub menu can be displayed
-    this.items.forEach(item => {
+    this.vItems.forEach(item => {
       if (this.isExistItemChildren(item)) {
-        if (this.hasItemChild(item, this.active)) {
+        if (this.hasItemChild(item, this.vActive)) {
           this.showSubMenu(item, true)
         } else {
           this.showSubMenu(item, false)

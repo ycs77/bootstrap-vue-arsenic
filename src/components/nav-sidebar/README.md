@@ -55,9 +55,30 @@ Provides a basic sidebar with responsive.
 
 ### Props
 
-| Name | Description | Type | Default |
-| ---- | ----------- | ---- | ------- |
-|      |             |      |         |
+| Name     | Description                                                           | Type   | Default |
+| -------- | --------------------------------------------------------------------- | ------ | ------- |
+| items    | **Required.** Menu item value. See "Items options" below for details. | Array  |         |
+| active   | Set active item name                                                  | String |         |
+| theme    | Sidebar theme                                                         | String | light   |
+| linkType | Menu item link type. See "Link type options" below for details.       | String | auto    |
+
+#### Items options
+
+| Name      | Description    | Type    |
+| --------- | -------------- | ------- |
+| name      |                | String  |
+| label     |                | String  |
+| iconClass |                | String  |
+| to        |                | String  |
+| show      |                | Boolean |
+| children  | Sub menu value | Array   |
+| badge     |                | String  |
+
+#### Link type options
+
+**Most of the time you only need to set auto.** It will automatically find if there is a `nuxt-link` or `router-link`, if it is not found, the tag &lt;a&gt; will be used.
+
+Options: `auto`, `router-link`, `router-link`, `a`, `none`
 
 ### Events
 
