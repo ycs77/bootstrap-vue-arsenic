@@ -4219,11 +4219,11 @@ var script = {
     '$route': 'updateRouter'
   },
   methods: {
-    clickItem(item, canShowSubItems = false) {
-      if (!canShowSubItems && !this.$route) {
+    clickItem(item, canShowSubMenu = false) {
+      if (!canShowSubMenu && !this.$route) {
         this.updateActive(item.name);
       } else {
-        this.showSubItems(item);
+        this.showSubMenu(item);
       }
     },
 
@@ -4234,10 +4234,10 @@ var script = {
     },
 
     // Methods
-    showSubItems(item, show = null) {
+    showSubMenu(item, show = null) {
       if (this.isExistItemChildren(item)) {
         this.$set(item, 'show', show !== null ? show : !item.show);
-        this.$emit('on-change-subitems', item);
+        this.$emit('on-change-submenu', item);
       }
     },
 
@@ -4292,15 +4292,15 @@ var script = {
     // Vue router
     if (this.$route) {
       this.updateRouter();
-    } // Set whether the sub items can be displayed
+    } // Set whether the sub menu can be displayed
 
 
     this.items.forEach(item => {
       if (this.isExistItemChildren(item)) {
         if (this.hasItemChild(item, this.active)) {
-          this.showSubItems(item, true);
+          this.showSubMenu(item, true);
         } else {
-          this.showSubItems(item, false);
+          this.showSubMenu(item, false);
         }
       }
     });
@@ -4407,7 +4407,7 @@ var __vue_render__ = function() {
       _vm._v(" "),
       _c(
         "ul",
-        { staticClass: "nav-sidebar-items" },
+        { staticClass: "nav-sidebar-menu" },
         _vm._l(_vm.items, function(item) {
           return _c(
             "li",
@@ -4492,7 +4492,7 @@ var __vue_render__ = function() {
                               expression: "item.show"
                             }
                           ],
-                          staticClass: "nav-sidebar-sub-items"
+                          staticClass: "nav-sidebar-sub-menu"
                         },
                         _vm._l(item.children, function(childItem) {
                           return _c(

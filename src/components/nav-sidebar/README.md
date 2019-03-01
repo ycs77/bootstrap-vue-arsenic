@@ -61,17 +61,17 @@ Provides a basic sidebar with responsive.
 
 ### Events
 
-| Name               | Description                                     | Return |
-| ------------------ | ----------------------------------------------- | ------ |
-| on-select          | Triggered when updating item                    | name   |
-| on-change-subitems | Triggered when the sub menu is turned on or off | item   |
+| Name              | Description                                     | Return |
+| ----------------- | ----------------------------------------------- | ------ |
+| on-select         | Triggered when updating item                    | name   |
+| on-change-submenu | Triggered when the sub menu is turned on or off | item   |
 
 ### Methods
 
 | Name         | Description                 | Params            |
 | ------------ | --------------------------- | ----------------- |
-| showSubItems | Manually display sub items  | item, show = null |
-| updateActive | Manually update active item | name |
+| showSubMenu  | Manually display sub menu   | item, show = null |
+| updateActive | Manually update active item | name              |
 
 ### Slots
 

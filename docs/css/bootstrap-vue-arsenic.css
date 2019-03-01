@@ -62,7 +62,7 @@
   text-overflow: ellipsis;
 }
 
-.nav-sidebar-items li .nav-sidebar-item {
+.nav-sidebar-menu li .nav-sidebar-item {
   display: flex;
   align-items: center;
   width: 100%;
@@ -73,19 +73,19 @@
   outline: none;
 }
 
-.nav-sidebar-items li .nav-sidebar-item .badge {
+.nav-sidebar-menu li .nav-sidebar-item .badge {
   transition: color 0.2s, background-color 0.2s;
 }
 
-.nav-sidebar-items li.no-icon .nav-sidebar-item {
+.nav-sidebar-menu li.no-icon .nav-sidebar-item {
   padding-left: calc( 1.75rem + 1.25em);
 }
 
-.nav-sidebar-items li.show .nav-sidebar-sub-icon {
+.nav-sidebar-menu li.show .nav-sidebar-sub-icon {
   transform: rotate(180deg);
 }
 
-.nav-sidebar-sub-items.v-enter-active, .nav-sidebar-sub-items.v-leave-active {
+.nav-sidebar-sub-menu.v-enter-active, .nav-sidebar-sub-menu.v-leave-active {
   transition: height 0.3s;
 }
 
@@ -118,33 +118,33 @@
   background-color: rgba(33, 37, 41, 0.06);
 }
 
-.nav-sidebar-light .nav-sidebar-items li .nav-sidebar-item {
+.nav-sidebar-light .nav-sidebar-menu li .nav-sidebar-item {
   color: #495057;
 }
 
-.nav-sidebar-light .nav-sidebar-items li .nav-sidebar-item:hover, .nav-sidebar-light .nav-sidebar-items li .nav-sidebar-item:focus {
+.nav-sidebar-light .nav-sidebar-menu li .nav-sidebar-item:hover, .nav-sidebar-light .nav-sidebar-menu li .nav-sidebar-item:focus {
   color: #1a1d20;
   background-color: rgba(33, 37, 41, 0.06);
 }
 
-.nav-sidebar-light .nav-sidebar-items li.active > .nav-sidebar-item,
-.nav-sidebar-light .nav-sidebar-items li > .nav-sidebar-item.active {
+.nav-sidebar-light .nav-sidebar-menu li.active > .nav-sidebar-item,
+.nav-sidebar-light .nav-sidebar-menu li > .nav-sidebar-item.active {
   color: #007bff;
   background-color: rgba(0, 123, 255, 0.1);
 }
 
-.nav-sidebar-light .nav-sidebar-items li.active > .nav-sidebar-item-switch,
-.nav-sidebar-light .nav-sidebar-items li > .nav-sidebar-item-switch.active {
+.nav-sidebar-light .nav-sidebar-menu li.active > .nav-sidebar-item-switch,
+.nav-sidebar-light .nav-sidebar-menu li > .nav-sidebar-item-switch.active {
   background-color: transparent;
 }
 
-.nav-sidebar-light .nav-sidebar-items li.active > .nav-sidebar-item-switch:hover, .nav-sidebar-light .nav-sidebar-items li.active > .nav-sidebar-item-switch:focus,
-.nav-sidebar-light .nav-sidebar-items li > .nav-sidebar-item-switch.active:hover,
-.nav-sidebar-light .nav-sidebar-items li > .nav-sidebar-item-switch.active:focus {
+.nav-sidebar-light .nav-sidebar-menu li.active > .nav-sidebar-item-switch:hover, .nav-sidebar-light .nav-sidebar-menu li.active > .nav-sidebar-item-switch:focus,
+.nav-sidebar-light .nav-sidebar-menu li > .nav-sidebar-item-switch.active:hover,
+.nav-sidebar-light .nav-sidebar-menu li > .nav-sidebar-item-switch.active:focus {
   background-color: rgba(33, 37, 41, 0.06);
 }
 
-.nav-sidebar-light .nav-sidebar-items .badge {
+.nav-sidebar-light .nav-sidebar-menu .badge {
   background-color: rgba(33, 37, 41, 0.1);
 }
 
@@ -162,38 +162,38 @@
   background-color: rgba(255, 255, 255, 0.06);
 }
 
-.nav-sidebar-dark .nav-sidebar-items li .nav-sidebar-item {
+.nav-sidebar-dark .nav-sidebar-menu li .nav-sidebar-item {
   color: #adb5bd;
 }
 
-.nav-sidebar-dark .nav-sidebar-items li .nav-sidebar-item:hover, .nav-sidebar-dark .nav-sidebar-items li .nav-sidebar-item:focus {
+.nav-sidebar-dark .nav-sidebar-menu li .nav-sidebar-item:hover, .nav-sidebar-dark .nav-sidebar-menu li .nav-sidebar-item:focus {
   color: #e6e8ea;
   background-color: rgba(255, 255, 255, 0.06);
 }
 
-.nav-sidebar-dark .nav-sidebar-items li.active > .nav-sidebar-item,
-.nav-sidebar-dark .nav-sidebar-items li > .nav-sidebar-item.active {
+.nav-sidebar-dark .nav-sidebar-menu li.active > .nav-sidebar-item,
+.nav-sidebar-dark .nav-sidebar-menu li > .nav-sidebar-item.active {
   color: #fff;
   background-color: #007bff;
 }
 
-.nav-sidebar-dark .nav-sidebar-items li.active > .nav-sidebar-item .badge,
-.nav-sidebar-dark .nav-sidebar-items li > .nav-sidebar-item.active .badge {
+.nav-sidebar-dark .nav-sidebar-menu li.active > .nav-sidebar-item .badge,
+.nav-sidebar-dark .nav-sidebar-menu li > .nav-sidebar-item.active .badge {
   color: #fff;
 }
 
-.nav-sidebar-dark .nav-sidebar-items li.active > .nav-sidebar-item-switch,
-.nav-sidebar-dark .nav-sidebar-items li > .nav-sidebar-item-switch.active {
+.nav-sidebar-dark .nav-sidebar-menu li.active > .nav-sidebar-item-switch,
+.nav-sidebar-dark .nav-sidebar-menu li > .nav-sidebar-item-switch.active {
   background-color: transparent;
 }
 
-.nav-sidebar-dark .nav-sidebar-items li.active > .nav-sidebar-item-switch:hover, .nav-sidebar-dark .nav-sidebar-items li.active > .nav-sidebar-item-switch:focus,
-.nav-sidebar-dark .nav-sidebar-items li > .nav-sidebar-item-switch.active:hover,
-.nav-sidebar-dark .nav-sidebar-items li > .nav-sidebar-item-switch.active:focus {
+.nav-sidebar-dark .nav-sidebar-menu li.active > .nav-sidebar-item-switch:hover, .nav-sidebar-dark .nav-sidebar-menu li.active > .nav-sidebar-item-switch:focus,
+.nav-sidebar-dark .nav-sidebar-menu li > .nav-sidebar-item-switch.active:hover,
+.nav-sidebar-dark .nav-sidebar-menu li > .nav-sidebar-item-switch.active:focus {
   background-color: rgba(255, 255, 255, 0.06);
 }
 
-.nav-sidebar-dark .nav-sidebar-items .badge {
+.nav-sidebar-dark .nav-sidebar-menu .badge {
   background-color: rgba(255, 255, 255, 0.2);
 }
 

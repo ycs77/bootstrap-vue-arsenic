@@ -61,7 +61,7 @@
   }
 }
 
-.nav-sidebar-items {
+.nav-sidebar-menu {
   li {
     .nav-sidebar-item {
       display: flex;
@@ -95,7 +95,7 @@
     }
   }
 }
-.nav-sidebar-sub-items {
+.nav-sidebar-sub-menu {
   &.v-enter-active,
   &.v-leave-active {
     transition: height $nav-sidebar-transition-duration;
@@ -130,7 +130,7 @@
     }
   }
 
-  .nav-sidebar-items {
+  .nav-sidebar-menu {
     li {
       .nav-sidebar-item {
         color: $nav-sidebar-light-item-color;
@@ -177,7 +177,7 @@
     }
   }
 
-  .nav-sidebar-items {
+  .nav-sidebar-menu {
     li {
       .nav-sidebar-item {
         color: $nav-sidebar-dark-item-color;

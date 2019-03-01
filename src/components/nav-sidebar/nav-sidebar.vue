@@ -9,7 +9,7 @@
         </div>
       </div>
 
-      <ul class="nav-sidebar-items">
+      <ul class="nav-sidebar-menu">
         <li v-for="item in items"
           :class="{
             active: itemActive(item),
@@ -42,7 +42,7 @@
             </div>
 
             <collapse-transition>
-              <ul class="nav-sidebar-sub-items" v-show="item.show">
+              <ul class="nav-sidebar-sub-menu" v-show="item.show">
                 <li v-for="childItem in item.children"
                   :class="{
                     'no-icon': true,
@@ -120,11 +120,11 @@ export default {
     '$route': 'updateRouter'
   },
   methods: {
-    clickItem(item, canShowSubItems = false) {
-      if (!canShowSubItems && !this.$route) {
+    clickItem(item, canShowSubMenu = false) {
+      if (!canShowSubMenu && !this.$route) {
         this.updateActive(item.name)
       } else {
-        this.showSubItems(item)
+        this.showSubMenu(item)
       }
     },
     clickSubItem(item) {
@@ -134,10 +134,10 @@ export default {
     },
 
     // Methods
-    showSubItems(item, show = null) {
+    showSubMenu(item, show = null) {
       if (this.isExistItemChildren(item)) {
         this.$set(item, 'show', show !== null ? show : !item.show)
-        this.$emit('on-change-subitems', item)
+        this.$emit('on-change-submenu', item)
       }
     },
     updateActive(name) {
@@ -189,13 +189,13 @@ export default {
       this.updateRouter()
     }
 
-    // Set whether the sub items can be displayed
+    // Set whether the sub menu can be displayed
     this.items.forEach(item => {
       if (this.isExistItemChildren(item)) {
         if (this.hasItemChild(item, this.active)) {
-          this.showSubItems(item, true)
+          this.showSubMenu(item, true)
         } else {
-          this.showSubItems(item, false)
+          this.showSubMenu(item, false)
         }
       }
     })
