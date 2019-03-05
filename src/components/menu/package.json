@@ -1,0 +1,12 @@
+{
+  "name": "@bootstrap-vue-arsenic/menu",
+  "version": "1.0.0",
+  "meta": {
+    "title": "Menu",
+    "components": [
+      {
+        "component": "BMenu"
+      }
+    ]
+  }
+}

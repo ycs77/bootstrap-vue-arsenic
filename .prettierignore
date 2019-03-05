@@ -1,0 +1,7 @@
+.nuxt/
+dist/
+docs-dist/
+es/
+node_modules/
+CHANGELOG.md
+nuxt/plugin.template.js
