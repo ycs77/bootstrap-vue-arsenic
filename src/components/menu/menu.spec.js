@@ -1,6 +1,6 @@
 import { loadFixture, testVM } from '../../../tests/utils'
 
-describe('menu', async () => {
+describe('menu', () => {
   beforeEach(loadFixture(__dirname, 'menu'))
   testVM()
 })

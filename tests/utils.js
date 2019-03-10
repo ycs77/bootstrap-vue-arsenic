@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
-import BootstrapVue from '../src'
+import BootstrapVueArsenic from '../src'
 
 const VUE_VERSION = process.env.VUE_VERSION ? 'vue-' + process.env.VUE_VERSION : 'vue'
 
@@ -10,9 +10,9 @@ const Vue = require(`${VUE_VERSION}/dist/vue.common`)
 Vue.config.productionTip = false
 Vue.config.devtools = false
 
-// Install Vue and BootstrapVue
+// Install Vue and BootstrapVueArsenic
 window.Vue = Vue
-Vue.use(BootstrapVue)
+Vue.use(BootstrapVueArsenic)
 
 export function loadFixture(dirName, name) {
   const fixtureBase = resolve(dirName, 'fixtures')

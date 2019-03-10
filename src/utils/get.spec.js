@@ -1,7 +1,7 @@
 import get from './get'
 
-describe('get', async () => {
-  it('handles invalid values gracefully', async () => {
+describe('get', () => {
+  it('handles invalid values gracefully', () => {
     expect(get(null, '')).toBe(null)
     expect(get({}, null)).toBe(null)
     expect(get({}, '')).toBe(null)
@@ -11,7 +11,7 @@ describe('get', async () => {
     expect(get({ a: { c: 'd' } }, 'a.d')).toBe(null)
   })
 
-  it('returns expected default value', async () => {
+  it('returns expected default value', () => {
     expect(get(null, '')).toBe(null)
     expect(get({}, null, undefined)).toBe(null)
     expect(get({}, '', true)).toBe(true)
@@ -21,7 +21,7 @@ describe('get', async () => {
     expect(get({ a: { c: 'd' } }, 'a.d', [])).toEqual([])
   })
 
-  it('returns expected value', async () => {
+  it('returns expected value', () => {
     const obj1 = { a: 'b' }
     const obj2 = { a: { b: { c: { d: 'e' } } } }
     const obj3 = { a: [{ b: 'c' }] }

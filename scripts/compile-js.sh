@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-echo 'Prettify JS...'
-npm run prettify
-echo 'Done.'
-echo ''
-
 echo 'Lint JS...'
 npm run lint
 echo 'Done.'
