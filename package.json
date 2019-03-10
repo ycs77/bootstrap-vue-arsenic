@@ -30,7 +30,7 @@
     "dist": "npm-run-all build test",
     "release": "standard-version"
   },
-  "homepage": "https://github.com/ycs77/bootstrap-vue-arsenic",
+  "homepage": "https://ycs77.github.io/bootstrap-vue-arsenic/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ycs77/bootstrap-vue-arsenic.git"
@@ -38,6 +38,22 @@
   "bugs": {
     "url": "https://github.com/ycs77/bootstrap-vue-arsenic/issues"
   },
+  "files": [
+    "src",
+    "dist",
+    "nuxt",
+    "es"
+  ],
+  "sideEffects": [
+    "./es/utils/object.js",
+    "./src/utils/object.js",
+    "./es/utils/array.js",
+    "./src/utils/array.js",
+    "**/*.scss",
+    "**/*.css",
+    "**/*.vue",
+    "./docs"
+  ],
   "dependencies": {
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.13"
