@@ -1,3 +1,3 @@
-# BootstrapVue tests
+# BootstrapVueArsenic tests
 
 Tests are moved into `src/**/*.spec` files.

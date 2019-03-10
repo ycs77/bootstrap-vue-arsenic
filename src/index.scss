@@ -1,0 +1,16 @@
+/*!
+ * BootstrapVueArsenic Custom CSS (https://ycs77.github.io/bootstrap-vue-arsenic/)
+ */
+
+// Bootstrap
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+// Bootstrap Vue
+@import "node_modules/bootstrap-vue/src/variables";
+@import "node_modules/bootstrap-vue/src/components/index";
+
+// Bootstrap Vue Arsenic
+@import "variables";
+@import "components/index";
