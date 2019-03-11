@@ -54,7 +54,11 @@ renderer.table = function(header, body) {
 module.exports = {
   srcDir: __dirname,
 
-  modern: 'client',
+  // modern: 'client',
+
+  router: {
+    base: process.env.DEPLOY_ENV === 'gh_pages' ? '/bootstrap-vue-arsenic/' : '/'
+  },
 
   build: {
     extractCSS: true,
@@ -115,7 +119,7 @@ module.exports = {
       let scan = (root, dir, excludeDirs = []) =>
         fs
           .readdirSync(`${root}/${dir}`)
-          .filter(c => c !== 'index.js' && c[0] !== '_')
+          .filter(c => c !== 'index.js' && c !== 'index.scss' && c[0] !== '_')
           .filter(c => excludeDirs.indexOf(c) === -1)
           .map(page => `/docs/${dir}/${page}`)
 

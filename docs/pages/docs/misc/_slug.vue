@@ -8,9 +8,6 @@
 import { misc as _meta } from '~/content'
 import docsMixin from '~/plugins/docs-mixin'
 
-const getReadMe = name =>
-  import('~/markdown/misc/' + name + '/README.md' /* webpackChunkName: "docs/misc" */)
-
 export default {
   mixins: [docsMixin],
   layout: 'docs',
@@ -20,8 +17,12 @@ export default {
   },
 
   async asyncData({ params }) {
-    const readme = await getReadMe(params.slug)
     const meta = _meta[params.slug]
+    let readme
+
+    if (params.slug === 'changelog') {
+      readme = await import('~/../CHANGELOG.md' /* webpackChunkName: "docs/misc" */)
+    }
 
     return {
       readme: readme.default,

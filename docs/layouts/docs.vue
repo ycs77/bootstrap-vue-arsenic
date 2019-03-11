@@ -4,7 +4,7 @@
     <b-container fluid>
       <b-row class="flex-xl-nowrap2">
         <b-col cols="12" md="3" xl="2" class="bd-sidebar">
-          <m-search />
+          <!-- <m-search /> -->
           <m-sidebar />
         </b-col>
 
@@ -14,7 +14,7 @@
 
         <b-col cols="12" md="9" xl="8" class="pb-md-3 pl-md-5 bd-content">
           <b-button-group class="my-2 float-right">
-            <b-btn size="sm" variant="success" :href="exampleURL" target="_blank" v-if="exampleURL">
+            <b-btn size="sm" variant="success" :to="exampleURL" v-if="exampleURL">
               Example
             </b-btn>
             <b-btn size="sm" variant="light" :href="issueURL" target="_blank">

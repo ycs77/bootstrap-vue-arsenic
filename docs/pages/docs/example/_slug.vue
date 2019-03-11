@@ -1,18 +1,24 @@
 <template>
-  <component :is="component" />
+  <div>
+    <m-nav />
+    <div class="bd-example-component">
+      <component :is="component" />
+    </div>
+  </div>
 </template>
 
 <script>
 import { components as _meta } from '~/content'
-import docsMixin from '~/plugins/docs-mixin'
+import mNav from '~/components/nav.vue'
+import mFooter from '~/components/footer.vue'
 import startCase from 'lodash/startCase'
 
 const getExample = name =>
   import('~/../src/components/' + name + '/example.vue' /* webpackChunkName: "docs/examples" */)
 
 export default {
-  mixins: [docsMixin],
   layout: 'none',
+  components: { mNav, mFooter },
   head() {
     return {
       title: `${this.meta && this.meta.title + ' example'} - BootstrapVueArsenic`
@@ -23,15 +29,13 @@ export default {
       component: 'div'
     }
   },
-  async asyncData({ params }) {
-    const meta = _meta[params.slug]
-
-    return {
-      meta
-    }
-  },
   validate({ params }) {
     return Boolean(_meta[params.slug])
+  },
+  async asyncData({ params }) {
+    return {
+      meta: _meta[params.slug]
+    }
   },
   async created() {
     // Import example compnent
@@ -40,3 +44,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+nav.bd-navbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+.bd-example-component {
+  margin-top: 4rem;
+}
+</style>
