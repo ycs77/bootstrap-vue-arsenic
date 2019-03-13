@@ -126,6 +126,10 @@ module.exports = {
       return (
         []
           .concat(scan('src', 'components'))
+          .concat(
+            scan('src', 'components')
+              .map(path => path.replace('components', 'example'))
+          )
           // .concat(scan('src', 'directives', ['modal', 'toggle']))
           // .concat(scan('docs/markdown', 'reference'))
           .concat(scan('docs/markdown', 'misc'))
@@ -137,7 +141,7 @@ module.exports = {
     '~/plugins/bootstrap-vue.js',
     '~/plugins/bootstrap-vue-arsenic.js',
     '~/plugins/codemirror.js',
-    // '~/plugins/play.js',
+    '~/plugins/play.js',
     '~/plugins/docs.js'
   ],
 
