@@ -67,6 +67,15 @@ export default {
       // Add appreciate query params for proper issue title
       return 'https://github.com/ycs77/bootstrap-vue-arsenic/issues/new?title=Docs'
     }
+  },
+  mounted() {
+    // Reset anchorjs-link url
+    const links = document.getElementsByClassName('anchorjs-link')
+    for (const link of links) {
+      if (/#.+$/.test(link.href)) {
+        link.href = location.href + link.href.match(/#.+$/)[0]
+      }
+    }
   }
 }
 </script>

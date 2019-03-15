@@ -3,7 +3,7 @@
     <b-nav v-b-scrollspy.72 vertical class="m-toc section-nav">
       <b-nav-item
         v-if="toc.title && toc.top"
-        :href="toc.top"
+        :href="currentUrl(toc.top)"
         class="toc-entry font-weight-bold mb-2"
         @click="scrollIntoView($event, toc.top)"
       >
@@ -17,7 +17,7 @@
             :key="h3.href"
             vertical
             pills
-            :href="h3.href"
+            :href="currentUrl(h3.href)"
             class="toc-entry toc-h3 mb-2"
             @click="scrollIntoView($event, h3.href)"
           >
@@ -28,7 +28,7 @@
         <b-nav-item
           v-else
           :key="h2.href"
-          :href="h2.href"
+          :href="currentUrl(h2.href)"
           class="toc-entry toc-h2 mb-2"
           @click="scrollIntoView($event, h2.href)"
         >
@@ -108,6 +108,12 @@ export default {
           el.focus()
         })
       }
+    },
+    currentUrl(url) {
+      if (/#.+$/.test(url)) {
+        return location.href + url.match(/#.+$/)[0]
+      }
+      return url
     }
   }
 }
