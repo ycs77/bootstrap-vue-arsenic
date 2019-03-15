@@ -3,7 +3,7 @@ import * as componentPlugins from './components'
 import { vueUse } from './utils/plugins'
 
 const VuePlugin = {
-  install(Vue) {
+  install(Vue, options) {
     if (Vue._bootstrap_vue_arsenic_installed) {
       return
     }
@@ -12,7 +12,14 @@ const VuePlugin = {
 
     // Register component plugins
     for (let plugin in componentPlugins) {
-      Vue.use(componentPlugins[plugin])
+      let componentOptions = undefined
+      if (typeof options === 'object') {
+        if (plugin in options) {
+          componentOptions = options[plugin]
+        }
+      }
+
+      Vue.use(componentPlugins[plugin], componentOptions)
     }
 
     // // Register directive plugins
