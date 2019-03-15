@@ -15,7 +15,8 @@ const dist = path.resolve(base, 'dist')
 // since they are expected to be provided later.
 // We want to include some of them in the build, so we exclude it here.
 const externalExcludes = [
-  // 'popper.js', 'vue-functional-data-merge'
+  // 'popper.js',
+  'vue-functional-data-merge'
 ]
 
 // The base rollup configuration

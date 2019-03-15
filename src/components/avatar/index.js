@@ -1,8 +1,8 @@
-import BMenu from './menu'
+import BAvatar from './avatar'
 import { registerComponents } from '../../utils/plugins'
 
 const components = {
-  BMenu
+  BAvatar
 }
 
 export default {

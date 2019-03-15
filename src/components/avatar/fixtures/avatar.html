@@ -1,0 +1,19 @@
+<div id="app">
+  <b-avatar ref="no_props">A</b-avatar>
+  <b-avatar img="user.svg" />
+
+  <b-avatar size="1.5rem">A</b-avatar>
+  <b-avatar size="4rem">A</b-avatar>
+
+  <b-avatar font-size="0.5rem">A</b-avatar>
+  <b-avatar font-size="1.75rem">A</b-avatar>
+
+  <b-avatar
+    v-for="variant in variants"
+    :key="variant"
+    :variant="variant"
+    :ref="`avatar_${variant}`">A</b-avatar>
+
+  <b-avatar rounded ref="badge_rounded">R</b-avatar>
+  <b-avatar square ref="badge_square">N</b-avatar>
+</div>

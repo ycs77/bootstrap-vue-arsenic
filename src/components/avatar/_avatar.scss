@@ -1,0 +1,36 @@
+// Base style
+.avatar {
+  width: $avatar-size;
+  height: $avatar-size;
+  max-width: $avatar-size;
+  max-height: $avatar-size;
+  font-size: $avatar-size / 2;
+  vertical-align: bottom;
+  @include border-radius(50%, 50%);
+  background-size: cover;
+  background-position: center center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Rounded avatar
+
+.avatar-rounded {
+  @include border-radius($border-radius);
+}
+
+// Square avatar
+
+.avatar-square {
+  @include border-radius(0, 0);
+}
+
+// Colors
+
+@each $color, $value in $theme-colors {
+  .avatar-#{$color} {
+    color: color-yiq($value);
+    background-color: $value;
+  }
+}

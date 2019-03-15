@@ -1,5 +1,5 @@
 export default {
   fetch({ redirect }) {
-    redirect('/docs/components/menu')
+    redirect('/docs/components/avatar')
   }
 }

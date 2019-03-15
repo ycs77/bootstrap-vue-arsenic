@@ -1,5 +1,5 @@
-import Menu from './menu'
+import Avatar from './avatar'
 
 export {
-  Menu
+  Avatar
 }

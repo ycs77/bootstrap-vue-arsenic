@@ -1,0 +1,12 @@
+{
+  "name": "@bootstrap-vue-arsenic/avatar",
+  "version": "1.0.0",
+  "meta": {
+    "title": "Avatar",
+    "components": [
+      {
+        "component": "BAvatar"
+      }
+    ]
+  }
+}
