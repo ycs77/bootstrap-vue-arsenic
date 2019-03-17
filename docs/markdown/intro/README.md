@@ -1,10 +1,16 @@
 # Getting Started
 
+**BootstrapVueArsenic** requires:
+
+- [Vue.js](https://vuejs.org) version {{ vueVersion }} (or greater)
+- [Bootstrap](https://getbootstrap.com) version {{ bootstrapVersion }} (or greater) SCSS/CSS
+- [BootstrapVue](https://bootstrap-vue.js.org) version {{ bootstrapVueVersion }} (or greater)
+
 ## General
 
 If you are using module bundlers like [webpack](https://webpack.js.org/),
 [rollup.js](https://rollupjs.org), etc you may prefer to directly include the package into your
-project. To get started, use `yarn` or `npm` to get the latest version of Bootstrap 4, Vue,
+project. To get started, use `yarn` or `npm` to get the latest version of Bootstrap 4, Vue.js,
 BootstrapVue and BootstrapVueArsenic:
 
 ```bash
@@ -324,8 +330,8 @@ information about browsers currently supported by Bootstrap 4.
 
 ### JS
 
-BootstrapVueArsenic is written in Vue! So this is up to your project and bundler which browsers are
-supported.
+BootstrapVueArsenic is written in Vue.js! So this is up to your project and bundler which browsers
+are supported.
 
 If you want to support older IE, Android and IOS devices, you may want to use
 [Babel Polyfill](https://babeljs.io/docs/usage/polyfill):

@@ -30,7 +30,8 @@ Via the `size` prop to set avatar width and height. If no size is specified `2.5
 
 ## Font size
 
-Via the `font-size` prop to set avatar font size. If no font size is specified, the avatar `size / 2` will be used.
+Via the `font-size` prop to set avatar font size. If no font size is specified, the avatar
+`size / 2` will be used.
 
 ```html
 <template>
@@ -44,7 +45,9 @@ Via the `font-size` prop to set avatar font size. If no font size is specified, 
 
 ## Contextual variations
 
-Add any of the following variants via the `variant` prop to change the appearance of a `<b-avatar>`: `primary`, `secondary`, `success`, `danger`, `warning`, `info`, `light`, and `dark`. If no variant is specified `secondary` will be used.
+Add any of the following variants via the `variant` prop to change the appearance of a `<b-avatar>`:
+`primary`, `secondary`, `success`, `danger`, `warning`, `info`, `light`, and `dark`. If no variant
+is specified `secondary` will be used.
 
 ```html
 <template>

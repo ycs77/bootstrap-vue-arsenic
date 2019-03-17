@@ -52,6 +52,7 @@
 .m-toc.section-nav .nav-link.active {
   color: #563d7c;
   background: transparent;
+  font-weight: 600;
 }
 
 .m-toc.section-nav > .nav-item + .nav,
@@ -110,10 +111,7 @@ export default {
       }
     },
     currentUrl(url) {
-      if (/#.+$/.test(url)) {
-        return location.href + url.match(/#.+$/)[0]
-      }
-      return url
+      return /#.+$/.test(url) ? location.href + url.match(/#.+$/)[0] : url
     }
   }
 }

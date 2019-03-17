@@ -25,16 +25,20 @@ export default {
     }
   },
   render(h, { props, data, children }) {
-    const imgStyle = props.img ? {
-      'background-image': `url(${props.img})`
-    } : {}
+    const imgStyle = props.img
+      ? {
+          'background-image': `url(${props.img})`
+        }
+      : {}
 
-    const sizeStyle = props.size ? {
-      'width': props.size,
-      'height': props.size,
-      'max-width': props.size,
-      'max-height': props.size
-    } : {}
+    const sizeStyle = props.size
+      ? {
+          width: props.size,
+          height: props.size,
+          'max-width': props.size,
+          'max-height': props.size
+        }
+      : {}
 
     const componentData = {
       class: [
@@ -45,9 +49,13 @@ export default {
           'avatar-square': Boolean(props.square)
         }
       ],
-      style: Object.assign({
-        'font-size': props.fontSize || `calc(${props.size} / 2)`
-      }, imgStyle, sizeStyle)
+      style: Object.assign(
+        {
+          'font-size': props.fontSize || `calc(${props.size} / 2)`
+        },
+        imgStyle,
+        sizeStyle
+      )
     }
 
     return h(props.tag, mergeData(data, componentData), children)

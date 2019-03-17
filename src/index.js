@@ -4,15 +4,9 @@ import { vueUse } from './utils/plugins'
 
 const VuePlugin = {
   install(Vue, options) {
-    if (Vue._bootstrap_vue_arsenic_installed) {
-      return
-    }
-
-    Vue._bootstrap_vue_arsenic_installed = true
-
     // Register component plugins
     for (let plugin in componentPlugins) {
-      let componentOptions = undefined
+      let componentOptions
       if (typeof options === 'object') {
         if (plugin in options) {
           componentOptions = options[plugin]

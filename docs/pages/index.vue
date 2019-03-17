@@ -12,15 +12,15 @@
             components.
           </p>
           <p class="mb-2 text-muted">
-            <a href="https://getbootstrap.com/docs/" target="_blank">Bootstrap 4</a> is the world's
-            most popular framework for building responsive, mobile-first sites.
+            <a href="https://getbootstrap.com" target="_blank">Bootstrap 4</a> is the world's most
+            popular framework for building responsive, mobile-first sites.
           </p>
           <p class="mb-2 text-muted">
-            <a href="https://vuejs.org/" target="_blank">Vue.js</a> (pronounced /vjuË, like view) is
+            <a href="https://vuejs.org" target="_blank">Vue.js</a> (pronounced /vjuË, like view) is
             a progressive framework for building user interfaces.
           </p>
           <p class="mb-4 text-muted">
-            <a href="https://bootstrap-vue.js.org/" target="_blank">BootstrapVue</a> provides one of
+            <a href="https://bootstrap-vue.js.org" target="_blank">BootstrapVue</a> provides one of
             the most comprehensive implementations of Bootstrap V4 components and grid system
             available for Vue.js 2.5+, complete with extensive and automated WAI-ARIA accessibility
             markup.

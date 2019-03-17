@@ -72,7 +72,9 @@ import('~/markdown/intro/README.md' /* webpackChunkName: "docs/intro" */).then(r
   process(readme.default, '', '')
 })
 Object.keys(_components).forEach(page => {
-  import('~/../src/components/' + page + '/README.md' /* webpackChunkName: "docs/components" */).then(readme => {
+  import('~/../src/components/' +
+    page +
+    '/README.md' /* webpackChunkName: "docs/components" */).then(readme => {
     process(readme.default, 'components', page)
   })
 })

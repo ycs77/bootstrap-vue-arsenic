@@ -29,7 +29,7 @@
     "test": "jest",
     "lint": "eslint --ext .js,.vue ./",
     "prettify": "prettier --write \"**/*.{js,json,md,scss,vue}\"",
-    "dist": "npm-run-all build test",
+    "dist": "npm-run-all prettify test build",
     "release": "standard-version"
   },
   "homepage": "https://ycs77.github.io/bootstrap-vue-arsenic/",
@@ -68,28 +68,29 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/standalone": "^7.3.4",
     "@nuxtjs/pwa": "^3.0.0-beta.12",
-    "autoprefixer": "^9.4.10",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "autoprefixer": "^9.5.0",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.3.1",
+    "babel-jest": "^24.5.0",
     "clean-css-cli": "^4.2.1",
     "codemirror": "^5.44.0",
     "cross-env": "^5.2.0",
-    "eslint": "^5.15.1",
-    "eslint-config-prettier": "^4.0.0",
+    "eslint": "^5.15.2",
+    "eslint-config-prettier": "^4.1.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-config-vue": "^2.0.2",
     "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jest": "^22.3.0",
+    "eslint-plugin-jest": "^22.4.1",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^5.2.2",
-    "esm": "^3.2.13",
+    "esm": "^3.2.18",
     "gh-pages": "^2.0.1",
     "highlightjs": "^9.12.0",
     "html-loader": "^0.5.5",
-    "jest": "^24.3.1",
+    "jest": "^24.5.0",
     "lodash": "^4.17.11",
     "marked": "^0.6.1",
     "node-sass": "^4.11.0",
@@ -106,10 +107,10 @@
     "sass-loader": "^7.1.0",
     "shx": "^0.3.2",
     "standard-version": "^5.0.1",
-    "terser": "^3.16.1",
-    "vue": "^2.6.8",
+    "terser": "^3.17.0",
+    "vue": "^2.6.9",
     "vue-jest": "^3.0.4",
-    "vue-template-compiler": "^2.6.8"
+    "vue-template-compiler": "^2.6.9"
   },
   "jest": {
     "testRegex": "spec.js$",
@@ -124,6 +125,11 @@
     "coverageDirectory": "./coverage/",
     "testEnvironmentOptions": {
       "pretendToBeVisual": true
+    }
+  },
+  "standard-version": {
+    "scripts": {
+      "postchangelog": "prettier --write CHANGELOG.md"
     }
   }
 }

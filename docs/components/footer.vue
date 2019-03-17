@@ -13,8 +13,9 @@
 
       <p>
         Currently v{{ version }}. Code licensed
-        <a href="https://github.com/ycs77/bootstrap-vue-arsenic/blob/master/LICENSE" target="_blank">MIT</a>.
-        Docs generated with <a href="https://nuxtjs.org/" target="_blank">Nuxt.js</a>
+        <a href="https://github.com/ycs77/bootstrap-vue-arsenic/blob/master/LICENSE" target="_blank"
+          >MIT</a
+        >. Docs generated with <a href="https://nuxtjs.org/" target="_blank">Nuxt.js</a>
       </p>
     </div>
   </footer>
