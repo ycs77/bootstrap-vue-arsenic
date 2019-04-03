@@ -16,7 +16,8 @@
     <article v-if="aliases && aliases.length > 0">
       <h4 :id="`comp-ref-${componentName}-aliases`">Component aliases</h4>
       <p>
-        <code>{{ tag }}</code> can also be used via the following aliases:
+        <code>{{ tag }}</code>
+        can also be used via the following aliases:
       </p>
       <ul>
         <li v-for="alias in aliases" :key="alias">
@@ -47,8 +48,9 @@
             v-for="arg in field.value"
             :key="`event-${field.item.event}-${arg.arg ? arg.arg : 'none'}`"
           >
-            <template v-if="arg.arg"
-              ><code>{{ arg.arg }}</code> -
+            <template v-if="arg.arg">
+              <code>{{ arg.arg }}</code>
+              -
             </template>
             <span v-html="arg.description" />
           </div>
@@ -59,8 +61,11 @@
     <article v-if="rootEventListeners && rootEventListeners.length > 0">
       <h4 :id="`comp-ref-${componentName}-rootEventListeners`">$root Event Listeners</h4>
       <p>
-        You can control <code>{{ tag }}</code> by emitting the following events on
-        <samp>$root</samp>:
+        You can control
+        <code>{{ tag }}</code>
+        by emitting the following events on
+        <samp>$root</samp>
+        :
       </p>
       <b-table
         :items="rootEventListeners"
@@ -74,8 +79,9 @@
             v-for="arg in field.value"
             :key="`event-${field.item.event}-${arg.arg ? arg.arg : 'none'}`"
           >
-            <template v-if="arg.arg"
-              ><code>{{ arg.arg }}</code> -
+            <template v-if="arg.arg">
+              <code>{{ arg.arg }}</code>
+              -
             </template>
             <span v-html="arg.description" />
           </div>

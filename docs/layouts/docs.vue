@@ -4,7 +4,7 @@
     <b-container fluid>
       <b-row class="flex-xl-nowrap2">
         <b-col cols="12" md="3" xl="2" class="bd-sidebar">
-          <!-- <m-search /> -->
+          <m-search />
           <m-sidebar />
         </b-col>
 

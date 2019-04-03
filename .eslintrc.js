@@ -14,6 +14,7 @@ module.exports = {
     Vue: true
   },
   rules: {
+    'vue/html-self-closing': ['error', { html: { void: 'always' } }],
     'vue/max-attributes-per-line': ['error', { singleline: 100 }],
     'vue/no-template-shadow': 'off',
     'vue/no-use-v-if-with-v-for': 'off',
