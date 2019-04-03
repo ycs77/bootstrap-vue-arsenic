@@ -22,7 +22,7 @@
       <span class="sr-only">Home</span>
     </b-navbar-brand>
 
-    <b-navbar-toggle target="bd-main-nav" />
+    <b-navbar-toggle target="bd-main-nav"></b-navbar-toggle>
 
     <b-collapse id="bd-main-nav" is-nav class="justify-content-between">
       <b-navbar-nav>
@@ -31,7 +31,7 @@
         <!-- <b-nav-item to="/docs/directives" active-class="active">Directives</b-nav-item> -->
         <!-- <b-nav-item to="/docs/reference" active-class="active">Reference</b-nav-item> -->
         <b-nav-item to="/docs/misc" active-class="active">Misc</b-nav-item>
-        <!-- <b-nav-item to="/play" active-class="active">Play</b-nav-item> -->
+        <b-nav-item to="/play" active-class="active">Play</b-nav-item>
       </b-navbar-nav>
 
       <b-navbar-nav>

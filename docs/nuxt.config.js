@@ -45,16 +45,17 @@ renderer.heading = function(text, level, raw, slugger) {
 // BS4 table support for markdown renderer
 const originalTable = renderer.table
 renderer.table = function(header, body) {
-  let r = originalTable.apply(this, arguments)
-  return r
-    .replace('<table>', '<table class="table b-table table-striped">')
+  let table = originalTable.apply(this, arguments)
+  table = table
+    .replace('<table>', '<table class="table b-table table-striped table-sm bv-docs-table">')
     .replace('<thead>', '<thead class="thead-default">')
+  return `<div class="table-responsive-sm">${table}</div>`
 }
 
 module.exports = {
   srcDir: __dirname,
 
-  // modern: 'client',
+  modern: 'client',
 
   router: {
     base: process.env.DEPLOY_ENV === 'gh_pages' ? '/bootstrap-vue-arsenic/' : '/'
@@ -121,6 +122,7 @@ module.exports = {
           .readdirSync(`${root}/${dir}`)
           .filter(c => c !== 'index.js' && c !== 'index.scss' && c[0] !== '_')
           .filter(c => excludeDirs.indexOf(c) === -1)
+          .filter(c => !/\.s?css$/.test(c))
           .map(page => `/docs/${dir}/${page}`)
 
       return (

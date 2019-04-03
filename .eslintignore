@@ -1,6 +1,6 @@
 .nuxt/
-node_modules/
 dist/
-es/
 docs-dist/
+es/
+node_modules/
 nuxt/plugin.template.js

@@ -2,9 +2,9 @@
   <section v-if="component" class="bd-content">
     <b-row tag="header" align-v="center">
       <b-col sm="9">
-        <h2 :id="`comp-ref-${componentName}`">
+        <anchored-heading :id="`comp-ref-${componentName}`" level="2">
           <code>{{ tag }}</code>
-        </h2>
+        </anchored-heading>
       </b-col>
       <b-col sm="3" class="text-sm-right">
         <b-btn variant="outline-secondary" size="sm" :href="githubURL" target="_blank">
@@ -14,7 +14,9 @@
     </b-row>
 
     <article v-if="aliases && aliases.length > 0">
-      <h4 :id="`comp-ref-${componentName}-aliases`">Component aliases</h4>
+      <anchored-heading :id="`comp-ref-${componentName}-aliases`" level="4">
+        Component aliases
+      </anchored-heading>
       <p>
         <code>{{ tag }}</code>
         can also be used via the following aliases:
@@ -27,39 +29,111 @@
     </article>
 
     <article v-if="propsItems && propsItems.length > 0">
-      <h4 :id="`comp-ref-${componentName}-props`">Properties</h4>
-      <b-table :items="propsItems" :fields="propsFields" small head-variant="default" striped>
-        <template slot="default" slot-scope="field">
-          <code v-if="field.value">{{ field.value }}</code>
+      <anchored-heading :id="`comp-ref-${componentName}-props`" level="4">
+        Properties
+      </anchored-heading>
+      <b-table
+        :items="propsItems"
+        :fields="propsFields"
+        class="bv-docs-table"
+        responsive="sm"
+        small
+        head-variant="default"
+        striped
+      >
+        <template slot="prop" slot-scope="{ value, item }">
+          <code class="text-nowrap">{{ value }}</code>
+          <b-badge v-if="item.required" variant="info">Required</b-badge>
+          <b-badge v-else-if="item.deprecated" variant="danger">Deprecated</b-badge>
+          <b-badge v-else-if="item.deprecation" variant="warning">Deprecation</b-badge>
+        </template>
+        <template slot="row-details" slot-scope="{ item }">
+          <p v-if="typeof item.deprecated === 'string'" class="mb-1 small">
+            {{ item.deprecated }}
+          </p>
+          <p v-if="typeof item.deprecation === 'string'" class="mb-1 small">
+            {{ item.deprecation }}
+          </p>
+        </template>
+        <template slot="defaultValue" slot-scope="{ value }">
+          <code v-if="value">{{ value }}</code>
+        </template>
+      </b-table>
+
+      <template v-if="componentVModel">
+        <anchored-heading :id="`comp-ref-${componentName}-v-model`" level="4">
+          V-Model
+        </anchored-heading>
+        <b-table
+          :items="[componentVModel]"
+          :fields="['prop', 'event']"
+          class="bv-docs-table"
+          responsive="sm"
+          small
+          head-variant="default"
+          striped
+        >
+          <template slot="prop" slot-scope="{ value }">
+            <code>{{ kebabCase(value) }}</code>
+          </template>
+          <template slot="event" slot-scope="{ value }">
+            <code>{{ value }}</code>
+          </template>
+        </b-table>
+      </template>
+    </article>
+
+    <article v-if="slots && slots.length > 0">
+      <anchored-heading :id="`comp-ref-${componentName}-slots`" level="4">
+        Slots
+      </anchored-heading>
+      <b-table
+        :items="slots"
+        :fields="slotsFields"
+        class="bv-docs-table"
+        responsive="sm"
+        small
+        head-variant="default"
+        striped
+      >
+        <template slot="name" slot-scope="{ value }">
+          <code class="text-nowrap">{{ value }}</code>
         </template>
       </b-table>
     </article>
 
-    <article v-if="slots && slots.length > 0">
-      <h4 :id="`comp-ref-${componentName}-slots`">Slots</h4>
-      <b-table :items="slots" :fields="slotsFields" small head-variant="default" striped />
-    </article>
-
     <article v-if="events && events.length > 0">
-      <h4 :id="`comp-ref-${componentName}-events`">Events</h4>
-      <b-table :items="events" :fields="eventsFields" small head-variant="default" striped>
-        <template slot="args" slot-scope="field">
-          <div
-            v-for="arg in field.value"
-            :key="`event-${field.item.event}-${arg.arg ? arg.arg : 'none'}`"
-          >
+      <anchored-heading :id="`comp-ref-${componentName}-events`" level="4">
+        Events
+      </anchored-heading>
+      <b-table
+        :items="events"
+        :fields="eventsFields"
+        class="bv-docs-table"
+        responsive="sm"
+        small
+        head-variant="default"
+        striped
+      >
+        <template slot="event" slot-scope="{ value }">
+          <code class="text-nowrap">{{ value }}</code>
+        </template>
+        <template slot="args" slot-scope="{ value, item }">
+          <div v-for="arg in value" :key="`event-${item.event}-${arg.arg ? arg.arg : 'none'}`">
             <template v-if="arg.arg">
-              <code>{{ arg.arg }}</code>
+              <code class="text-nowrap">{{ arg.arg }}</code>
               -
             </template>
-            <span v-html="arg.description" />
+            <span>{{ arg.description }}</span>
           </div>
         </template>
       </b-table>
     </article>
 
     <article v-if="rootEventListeners && rootEventListeners.length > 0">
-      <h4 :id="`comp-ref-${componentName}-rootEventListeners`">$root Event Listeners</h4>
+      <anchored-heading :id="`comp-ref-${componentName}-rootEventListeners`" level="4">
+        $root Event Listeners
+      </anchored-heading>
       <p>
         You can control
         <code>{{ tag }}</code>
@@ -70,20 +144,21 @@
       <b-table
         :items="rootEventListeners"
         :fields="rootEventListenersFields"
+        class="bv-docs-table"
+        responsive="sm"
         small
         head-variant="default"
         striped
       >
-        <template slot="args" slot-scope="field">
-          <div
-            v-for="arg in field.value"
-            :key="`event-${field.item.event}-${arg.arg ? arg.arg : 'none'}`"
-          >
+        <template slot="event" slot-scope="{ value }">
+          <code class="text-nowrap">{{ value }}</code>
+        </template>
+        <template slot="args" slot-scope="{ value, item }">
+          <div v-for="arg in value" :key="`event-${item.event}-${arg.arg ? arg.arg : 'none'}`">
             <template v-if="arg.arg">
-              <code>{{ arg.arg }}</code>
-              -
+              <code class="text-nowrap">{{ arg.arg }}</code>
+              <span v-if="arg.description">- {{ arg.description }}</span>
             </template>
-            <span v-html="arg.description" />
           </div>
         </template>
       </b-table>
@@ -104,8 +179,10 @@ h5 {
 <script>
 import Vue from 'vue'
 import kebabCase from 'lodash/kebabCase'
+import AnchoredHeading from './anchored-heading'
 
 export default {
+  components: { AnchoredHeading },
   props: {
     component: {},
     slots: {
@@ -128,56 +205,61 @@ export default {
   computed: {
     componentOptions() {
       const component = Vue.options.components[this.component]
-      return component && component.options ? component.options : {}
-    },
-    propsFields() {
-      const component = Vue.options.components[this.component]
-      let props = []
-      if (component) {
-        props = component.options.props
-      }
-      const hasRequired = props.length > 0 && props.filter(p => p.required).length > 0
-
-      const fields = {
-        prop: { label: 'Property' },
-        type: { label: 'Type' },
-        default: { label: 'Default Value' }
-      }
-
-      // Add the required column if there are required field(s)
-      if (hasRequired) {
-        fields.required = { label: 'Required' }
-      }
-
-      return fields
-    },
-    eventsFields() {
-      return {
-        event: { label: 'Event' },
-        args: { label: 'Arguments' },
-        description: { label: 'Description' }
-      }
-    },
-    rootEventListenersFields() {
-      return {
-        event: { label: 'Event' },
-        args: { label: 'Arguments' },
-        description: { label: 'Description' }
-      }
-    },
-    slotsFields() {
-      return {
-        name: { label: 'Slot' },
-        description: { label: 'Description' }
-      }
-    },
-    propsItems() {
-      const component = Vue.options.components[this.component]
       if (!component) {
         return {}
       }
 
-      const props = component.options.props
+      let options = {}
+      if (!component.options && typeof component === 'function') {
+        // Async component that hans't been resolved yet
+        component(opts => {
+          options = opts ? { ...opts } : {}
+        })
+      } else {
+        // Regular component
+        options = component.options || {}
+      }
+
+      return options
+    },
+    componentVModel() {
+      const model = this.componentOptions.model
+      if (model && model.prop && model.event) {
+        return model
+      } else {
+        return false
+      }
+    },
+    componentProps() {
+      return this.componentOptions.props || {}
+    },
+    propsFields() {
+      return [
+        { key: 'prop', label: 'Property' },
+        { key: 'type', label: 'Type' },
+        { key: 'defaultValue', label: 'Default Value' }
+      ]
+    },
+    eventsFields() {
+      return [
+        { key: 'event', label: 'Event' },
+        { key: 'args', label: 'Arguments' },
+        { key: 'description', label: 'Description' }
+      ]
+    },
+    rootEventListenersFields() {
+      return [
+        { key: 'event', label: 'Event' },
+        { key: 'args', label: 'Arguments' },
+        { key: 'description', label: 'Description' }
+      ]
+    },
+    slotsFields() {
+      return [{ key: 'name', label: 'Slot' }, { key: 'description', label: 'Description' }]
+    },
+    propsItems() {
+      const props = this.componentProps
+
       return Object.keys(props).map(prop => {
         const p = props[prop]
 
@@ -194,30 +276,26 @@ export default {
 
         // Describe value
         let defaultVal = p.default
-
         if (defaultVal instanceof Function && !Array.isArray(defaultVal)) {
           defaultVal = defaultVal()
         }
-
         if (typeof defaultVal !== 'string') {
           defaultVal = JSON.stringify(defaultVal)
         }
-
         if (defaultVal === '' || defaultVal === null || defaultVal === 'null') {
           defaultVal = ''
         }
-
         defaultVal = (defaultVal || '').replace(/"/g, "'")
-
-        // Requied prop?
-        const required = p.required ? 'Yes' : ''
 
         return {
           prop: kebabCase(prop),
           type,
-          required,
           typeClass,
-          default: defaultVal
+          defaultValue: defaultVal,
+          required: p.required || false,
+          deprecated: p.deprecated || false,
+          deprecation: p.deprecation || false,
+          _showDetails: typeof p.deprecated === 'string' || typeof p.deprecation === 'string'
         }
       })
     },
@@ -225,7 +303,7 @@ export default {
       return kebabCase(this.component)
     },
     tag() {
-      return '<' + this.componentName + '>'
+      return `<${this.componentName}>`
     },
     githubURL() {
       const base = 'https://github.com/ycs77/bootstrap-vue-arsenic/tree/develop/src/components'

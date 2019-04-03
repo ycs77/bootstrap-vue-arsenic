@@ -1,28 +1,33 @@
 import * as componentPlugins from './components'
 // import * as directivePlugins from './directives'
-import { vueUse } from './utils/plugins'
+import { registerPlugins, vueUse } from './utils/plugins'
+// import { setConfig } from './utils/config'
 
-const VuePlugin = {
-  install(Vue, options) {
-    // Register component plugins
-    for (let plugin in componentPlugins) {
-      let componentOptions
-      if (typeof options === 'object') {
-        if (plugin in options) {
-          componentOptions = options[plugin]
-        }
-      }
-
-      Vue.use(componentPlugins[plugin], componentOptions)
-    }
-
-    // // Register directive plugins
-    // for (let plugin in directivePlugins) {
-    //   Vue.use(directivePlugins[plugin])
-    // }
+const install = (Vue, config = {}) => {
+  if (install.installed) {
+    /* istanbul ignore next */
+    return
   }
+  install.installed = true
+
+  // // Configure BootstrapVueArsenic
+  // setConfig(config)
+
+  // Register component plugins
+  registerPlugins(Vue, componentPlugins)
+
+  // // Register directive plugins
+  // registerPlugins(Vue, directivePlugins)
 }
 
-vueUse(VuePlugin)
+install.installed = false
 
-export default VuePlugin
+const BootstrapVueArsenic = {
+  install: install
+  // setConfig: setConfig
+}
+
+// Auto installation only occurs if window.Vue exists
+vueUse(BootstrapVueArsenic)
+
+export default BootstrapVueArsenic

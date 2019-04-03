@@ -64,6 +64,8 @@ SCSS _after_ Bootstrap SCSS to ensure variables are set up correctly.
 
 <!-- ## Nuxt.js plugin module
 
+[Nuxt.js](https://nuxtjs.org) version {{ nuxtVersion }} (or greater) is recommended.
+
 Install dependencies:
 
 ```bash
@@ -79,7 +81,7 @@ Add `bootstrap-vue-arsenic/nuxt` to modules section of **nuxt.config.js**.
 This will include both `boostrap.css` and `bootstrap-vue-arsenic.css` default CSS.
 
 ```js
-{
+module.exports = {
   modules: ['bootstrap-vue-arsenic/nuxt']
 }
 ```
@@ -88,7 +90,7 @@ If you are using custom Bootstrap SCSS, you can disable automatic inclusion of B
 BootstrapVueArsenic pre-compiled CSS files by setting the following option(s) to `false`:
 
 ```js
-{
+module.exports = {
   modules: [
     'bootstrap-vue/nuxt',
     'bootstrap-vue-arsenic/nuxt'
@@ -129,7 +131,7 @@ In your app main entry point include the single custom SCSS file (when using `sa
 ```js
 // app.js
 import 'custom.scss'
-``` -->
+```
 
 ### Tree shaking with Nuxt.js
 
@@ -138,19 +140,33 @@ BootstrapVueArsenic plugins, you can configure the list of BootstrapVueArsenic `
 you want to globally install in your Nuxt.js project.
 
 ```js
-{
+module.exports = {
   modules: [
     'bootstrap-vue/nuxt',
     'bootstrap-vue-arsenic/nuxt'
   ],
   BootstrapVueArsenic: {
-    componentPlugins: [
-      'Avatar',
-      'Loading'
-    ]
+    componentPlugins: ['Avatar', 'Loading']
   }
 }
 ```
+
+### Passing custom BootstrapVueArsenic config with Nuxt.js
+
+If you need to pass a custom
+[BootstrapVueArsenic configuration](/docs/misc/settings#default-bootstrapvue-configuration), you may due so
+by setting the `config` property in your `nuxt.config.js`:
+
+```js
+module.exports = {
+  modules: ['bootstrap-vue/nuxt'],
+  BootstrapVueArsenic: {
+    config: {
+      // Custom config options here
+    }
+  }
+}
+``` -->
 
 ## Vue CLI 3
 
@@ -174,12 +190,12 @@ import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import BootstrapVueArsenic from 'bootstrap-vue-arsenic'
 
-Vue.use(BootstrapVue)
-Vue.use(BootstrapVueArsenic)
-
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap-vue-arsenic/dist/bootstrap-vue-arsenic.css'
+
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueArsenic)
 ```
 
 Optionally, you can import components individually, as [below](#individual-components). To shorten
@@ -214,12 +230,16 @@ directly importing those components.
 
 To cherry pick a component/directive, start by importing it in the file where it is being used:
 
+<!-- eslint-disable no-unused-vars -->
+
 ```js
 import BAvatar from 'bootstrap-vue-arsenic/es/components/avatar/avatar'
 import BLoading from 'bootstrap-vue-arsenic/es/components/loading/loading'
 ```
 
 Then add it to your component definition:
+
+<!-- eslint-disable no-undef -->
 
 ```js
 Vue.component('my-component', {
@@ -231,6 +251,8 @@ Vue.component('my-component', {
 ```
 
 Or register them globally:
+
+<!-- eslint-disable no-undef -->
 
 ```js
 Vue.component('b-avatar', BAvatar)
@@ -244,6 +266,8 @@ camelCasing, PascalCasing, and/or object property shorthand.
 
 You can also import component groups as Vue plugins by importing the component group or directive
 directory:
+
+<!-- eslint-disable import/first, import/no-duplicates -->
 
 ```js
 // This imports <b-avatar> as a plugin:
@@ -261,7 +285,6 @@ node module for your babel loader rule in webpack.
 
 ```js
 // webpack.config.js
-const webpack = require('webpack')
 const path = require('path')
 
 module.exports = {

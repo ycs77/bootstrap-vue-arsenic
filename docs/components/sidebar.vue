@@ -5,11 +5,11 @@
       :key="group.base"
       tag="div"
       class="bd-toc-item"
-      :to="'/docs/' + group.base"
+      :to="`/docs/${group.base}`"
       active-class="active"
       :exact="group.exact"
     >
-      <router-link class="bd-toc-link" :to="'/docs/' + group.base" :exact="group.exact">
+      <router-link class="bd-toc-link" :to="`/docs/${group.base}`" :exact="group.exact">
         {{ group.title }}
         <small v-if="group.new" class="badge badge-success">NEW</small>
         <small v-if="group.experimental" class="badge badge-warning">BETA</small>
@@ -20,7 +20,7 @@
         <b-nav-item
           v-for="page in group.pages"
           :key="page.title"
-          :to="('/docs/' + group.base + page.slug).replace(/\/\//g, '/')"
+          :to="`/docs/${group.base}${page.slug}`.replace(/\/\//g, '/')"
           active-class="active"
         >
           {{ page.title }}
