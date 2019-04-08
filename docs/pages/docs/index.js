@@ -1,5 +1,4 @@
-// import { bootstrapVersion, bootstrapVueVersion, vueVersion, nuxtVersion, defaultConfig } from '~/content'
-import { bootstrapVersion, bootstrapVueVersion, vueVersion, nuxtVersion } from '~/content'
+import { bootstrapVersion, bootstrapVueVersion, vueVersion, nuxtVersion, defaultConfig } from '~/content'
 import docsMixin from '~/plugins/docs-mixin'
 import readme from '~/markdown/intro/README.md'
 
@@ -9,8 +8,9 @@ export default {
     return {
       bootstrapVersion,
       bootstrapVueVersion,
+      vueVersion,
       nuxtVersion,
-      vueVersion
+      defaultConfig,
     }
   },
   // We use a string template here so that the docs README can do interpolation

@@ -1,4 +1,4 @@
-// import { setConfig } from './config'
+import { setConfig } from './config'
 
 /**
  * Plugin install factory function.
@@ -12,7 +12,7 @@ export const installFactory = ({ components, directives, plugins }) => {
       return
     }
     install.installed = true
-    // setConfig(config)
+    setConfig(config)
     registerComponents(Vue, components)
     registerDirectives(Vue, directives)
     registerPlugins(Vue, plugins)

@@ -3,10 +3,10 @@
 //
 import { setConfig } from './utils/config'
 
-const BVConfigPlugin = {
+const BAConfigPlugin = {
   install(Vue, config = {}) {
     setConfig(config)
   }
 }
 
-export default BVConfigPlugin
+export default BAConfigPlugin

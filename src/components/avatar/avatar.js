@@ -1,7 +1,10 @@
 import { mergeData } from 'vue-functional-data-merge'
+import { getComponentConfig } from '../../utils/config'
+
+const NAME = 'BAvatar'
 
 export default {
-  name: 'BAvatar',
+  name: NAME,
   functional: true,
   props: {
     img: String,
@@ -13,7 +16,7 @@ export default {
     },
     variant: {
       type: String,
-      default: 'secondary'
+      default: () => getComponentConfig(NAME, 'secondary')
     },
     rounded: {
       type: Boolean,

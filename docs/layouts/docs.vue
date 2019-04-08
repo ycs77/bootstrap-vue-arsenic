@@ -42,7 +42,7 @@ export default {
   components: { mSidebar, mNav, mSearch, mToc },
   computed: {
     editPageURL() {
-      const base = 'https://github.com/ycs77/bootstrap-vue-arsenic/tree/develop'
+      const base = 'https://github.com/ycs77/bootstrap-vue-arsenic/blob/master'
       let path = '/'
       const name = this.$route.name
       const slug = this.$route.params.slug
@@ -59,8 +59,8 @@ export default {
           path = '/CHANGELOG.md'
         } else if (slug === 'contributing') {
           path = '/CONTRIBUTING.md'
-          // } else if (slug === 'settings') {
-          //   path = '/docs/markdown/misc/settings/README.md'
+        } else if (slug === 'settings') {
+          path = '/docs/markdown/misc/settings/README.md'
         }
       }
       return base + path

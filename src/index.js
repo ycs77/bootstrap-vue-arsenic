@@ -1,7 +1,7 @@
 import * as componentPlugins from './components'
 // import * as directivePlugins from './directives'
 import { registerPlugins, vueUse } from './utils/plugins'
-// import { setConfig } from './utils/config'
+import { setConfig } from './utils/config'
 
 const install = (Vue, config = {}) => {
   if (install.installed) {
@@ -10,8 +10,8 @@ const install = (Vue, config = {}) => {
   }
   install.installed = true
 
-  // // Configure BootstrapVueArsenic
-  // setConfig(config)
+  // Configure BootstrapVueArsenic
+  setConfig(config)
 
   // Register component plugins
   registerPlugins(Vue, componentPlugins)
@@ -23,8 +23,8 @@ const install = (Vue, config = {}) => {
 install.installed = false
 
 const BootstrapVueArsenic = {
-  install: install
-  // setConfig: setConfig
+  install: install,
+  setConfig: setConfig
 }
 
 // Auto installation only occurs if window.Vue exists
