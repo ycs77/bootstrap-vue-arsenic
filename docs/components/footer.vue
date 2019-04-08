@@ -12,6 +12,8 @@
       </ul>
 
       <p>
+        BootstrapVueArsenic based on <a href="https://bootstrap-vue.js.org" target="_blank">BootstrapVue</a>
+        <br>
         Currently v{{ version }}. Code licensed
         <a
           href="https://github.com/ycs77/bootstrap-vue-arsenic/blob/master/LICENSE"
