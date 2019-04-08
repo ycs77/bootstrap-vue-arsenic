@@ -1,48 +1,94 @@
-import { loadFixture, testVM } from '../../../tests/utils'
-
-const variantList = [
-  'secondary',
-  'primary',
-  'success',
-  'info',
-  'warning',
-  'danger',
-  'dark',
-  'light'
-].map(variant => {
-  return { ref: `avatar_${variant}`, variant }
-})
+import Avatar from './avatar'
+import { mount } from '@vue/test-utils'
 
 describe('avatar', () => {
-  beforeEach(loadFixture(__dirname, 'avatar'))
-  testVM()
+  it('should have base classes', async () => {
+    const wrapper = mount(Avatar)
+    expect(wrapper.is('span')).toBe(true)
+    expect(wrapper.classes()).toContain('avatar')
+    expect(wrapper.classes()).toContain('avatar-secondary')
+    expect(wrapper.classes()).not.toContain('avatar-rounded')
+    expect(wrapper.classes()).not.toContain('avatar-square')
+  })
 
-  it('should apply variant classes', async () => {
-    const {
-      app: { $refs }
-    } = window
-
-    variantList.forEach(({ ref, variant }) => {
-      expect($refs[ref][0]).toHaveAllClasses(['avatar', `avatar-${variant}`])
+  it('should have default slot content', async () => {
+    const wrapper = mount(Avatar, {
+      slots: {
+        default: 'A'
+      }
     })
+    expect(wrapper.is('span')).toBe(true)
+    expect(wrapper.text()).toBe('A')
+    expect(wrapper.classes()).toContain('avatar')
+    expect(wrapper.classes()).toContain('avatar-secondary')
+    expect(wrapper.classes()).not.toContain('avatar-rounded')
+    expect(wrapper.classes()).not.toContain('avatar-square')
   })
 
-  it('should apply secondary class when not passed variant', async () => {
-    const {
-      app: { $refs }
-    } = window
-
-    const vm = $refs.no_props
-    expect(vm).toHaveClass('avatar-secondary')
+  it('should apply size', async () => {
+    const wrapper = mount(Avatar, {
+      propsData: {
+        size: '4rem'
+      }
+    })
+    expect(wrapper.is('span')).toBe(true)
+    expect(wrapper.classes()).toContain('avatar')
+    expect(wrapper.classes()).toContain('avatar-secondary')
+    expect(wrapper.classes()).not.toContain('avatar-rounded')
+    expect(wrapper.classes()).not.toContain('avatar-square')
+    expect(wrapper.attributes().style).toBe('font-size: calc(4rem / 2); width: 4rem; height: 4rem; max-width: 4rem; max-height: 4rem;')
   })
 
-  it('should not apply pill class when not passed rounded boolean prop or square boolean prop', async () => {
-    const {
-      app: { $refs }
-    } = window
+  it('should apply font size', async () => {
+    const wrapper = mount(Avatar, {
+      propsData: {
+        'font-size': '1.75rem'
+      }
+    })
+    expect(wrapper.is('span')).toBe(true)
+    expect(wrapper.classes()).toContain('avatar')
+    expect(wrapper.classes()).toContain('avatar-secondary')
+    expect(wrapper.classes()).not.toContain('avatar-rounded')
+    expect(wrapper.classes()).not.toContain('avatar-square')
+    expect(wrapper.attributes().style).toBe('font-size: 1.75rem;')
+  })
 
-    const vm = $refs.no_props
-    expect(vm).not.toHaveClass('avatar-rounded')
-    expect(vm).not.toHaveClass('avatar-square')
+  it('should apply variant class', async () => {
+    const wrapper = mount(Avatar, {
+      propsData: {
+        variant: 'danger'
+      }
+    })
+    expect(wrapper.is('span')).toBe(true)
+    expect(wrapper.classes()).toContain('avatar-danger')
+    expect(wrapper.classes()).toContain('avatar')
+    expect(wrapper.classes()).not.toContain('avatar-rounded')
+    expect(wrapper.classes()).not.toContain('avatar-square')
+  })
+
+  it('should apply rounded class', async () => {
+    const wrapper = mount(Avatar, {
+      propsData: {
+        rounded: true
+      }
+    })
+    expect(wrapper.is('span')).toBe(true)
+    expect(wrapper.classes()).toContain('avatar-rounded')
+    expect(wrapper.classes()).toContain('avatar')
+    expect(wrapper.classes()).toContain('avatar-secondary')
+    expect(wrapper.classes()).not.toContain('avatar-square')
+  })
+
+  it('should apply square class', async () => {
+    const wrapper = mount(Avatar, {
+      propsData: {
+        square: true
+      }
+    })
+    expect(wrapper.is('span')).toBe(true)
+    expect(wrapper.classes()).toContain('avatar-square')
+    expect(wrapper.classes()).toContain('avatar')
+    expect(wrapper.classes()).toContain('avatar-secondary')
+    expect(wrapper.classes()).not.toContain('avatar-rounded')
   })
 })

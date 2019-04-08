@@ -13,3 +13,4 @@ es/
 node_modules/
 sw.js
 workbox*.js*
+docs/pages/example.vue

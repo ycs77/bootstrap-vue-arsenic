@@ -1,6 +1,6 @@
 # Avatar
 
-The user avatar, can use pictures or text and color backgrounds.
+> The user avatar, can use pictures or text and color backgrounds.
 
 ```html
 <template>
@@ -11,7 +11,7 @@ The user avatar, can use pictures or text and color backgrounds.
 <!-- b-avatar.vue -->
 ```
 
-## Size
+## Multiple avatar size
 
 Via the `size` prop to set avatar width and height. If no size is specified `2.5rem` will be used.
 
@@ -43,7 +43,7 @@ Via the `font-size` prop to set avatar font size. If no font size is specified, 
 <!-- b-avatar-font-size.vue -->
 ```
 
-## Contextual variations
+## Avatar contextual variations
 
 Add any of the following variants via the `variant` prop to change the appearance of a `<b-avatar>`:
 `primary`, `secondary`, `success`, `danger`, `warning`, `info`, `light`, and `dark`. If no variant
@@ -64,7 +64,7 @@ is specified `secondary` will be used.
 <!-- b-avatar-variations.vue -->
 ```
 
-## Round and Square
+## Round and Square avatar
 
 Via the `rounded` prop to set avatar round angle, or via the `square` prop to set square avatar.
 

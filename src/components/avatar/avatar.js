@@ -3,35 +3,35 @@ import { getComponentConfig } from '../../utils/config'
 
 const NAME = 'BAvatar'
 
+export const props = {
+  img: String,
+  size: String,
+  fontSize: String,
+  tag: {
+    type: String,
+    default: 'span'
+  },
+  variant: {
+    type: String,
+    default: () => getComponentConfig(NAME, 'variant')
+  },
+  rounded: {
+    type: Boolean,
+    default: false
+  },
+  square: {
+    type: Boolean,
+    default: false
+  }
+}
+
 export default {
   name: NAME,
   functional: true,
-  props: {
-    img: String,
-    size: String,
-    fontSize: String,
-    tag: {
-      type: String,
-      default: 'span'
-    },
-    variant: {
-      type: String,
-      default: () => getComponentConfig(NAME, 'secondary')
-    },
-    rounded: {
-      type: Boolean,
-      default: false
-    },
-    square: {
-      type: Boolean,
-      default: false
-    }
-  },
+  props,
   render(h, { props, data, children }) {
     const imgStyle = props.img
-      ? {
-          'background-image': `url(${props.img})`
-        }
+      ? { 'background-image': `url(${props.img})` }
       : {}
 
     const sizeStyle = props.size
@@ -58,7 +58,8 @@ export default {
         },
         imgStyle,
         sizeStyle
-      )
+      ),
+      props
     }
 
     return h(props.tag, mergeData(data, componentData), children)
