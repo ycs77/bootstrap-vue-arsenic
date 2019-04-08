@@ -124,10 +124,10 @@ in. It is best to set the complete configuration using the `BAConfig` helper plu
 **Example 3** above. The `BAConfig` plugin should be used in the main entry point of your app, and
 before any `Vue.use()` of component plugins.
 
-<!-- ### Setting the config via Nuxt.js BootstrapVueArsenic plugin
+### Setting the config via Nuxt.js BootstrapVueArsenic plugin
 
 Refer to the [Getting Started](/docs/#nuxtjs-plugin-module) documentation for information on passing
-the config object to the Nuxt.js plugin module. -->
+the config object to the Nuxt.js plugin module.
 
 ## Disabling BootstrapVueArsenic console warnings
 

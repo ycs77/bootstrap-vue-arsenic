@@ -62,7 +62,7 @@ SCSS _after_ Bootstrap SCSS to ensure variables are set up correctly.
 **Note**: _Requires webpack configuration to load CSS/SCSS files
 ([official guide](https://webpack.js.org/guides/asset-management/#loading-css))_.
 
-<!-- ## Nuxt.js plugin module
+## Nuxt.js plugin module
 
 [Nuxt.js](https://nuxtjs.org) version {{ nuxtVersion }} (or greater) is recommended.
 
@@ -76,13 +76,16 @@ npm i bootstrap-vue-arsenic
 yarn add bootstrap-vue-arsenic
 ```
 
-Add `bootstrap-vue-arsenic/nuxt` to modules section of **nuxt.config.js**.
+Add `bootstrap-vue/nuxt` and `bootstrap-vue-arsenic/nuxt` to modules section of **nuxt.config.js**.
 
-This will include both `boostrap.css` and `bootstrap-vue-arsenic.css` default CSS.
+This will include both `boostrap.css`, `bootstrap-vue.css` and `bootstrap-vue-arsenic.css` default CSS.
 
 ```js
 module.exports = {
-  modules: ['bootstrap-vue-arsenic/nuxt']
+  modules: [
+    'bootstrap-vue/nuxt',
+    'bootstrap-vue-arsenic/nuxt'
+  ]
 }
 ```
 
@@ -154,19 +157,22 @@ module.exports = {
 ### Passing custom BootstrapVueArsenic config with Nuxt.js
 
 If you need to pass a custom
-[BootstrapVueArsenic configuration](/docs/misc/settings#default-bootstrapvue-configuration), you may due so
+[BootstrapVueArsenic configuration](/docs/misc/settings#default-bootstrapvuearsenic-configuration), you may due so
 by setting the `config` property in your `nuxt.config.js`:
 
 ```js
 module.exports = {
-  modules: ['bootstrap-vue/nuxt'],
+  modules: [
+    'bootstrap-vue/nuxt',
+    'bootstrap-vue-arsenic/nuxt'
+  ],
   BootstrapVueArsenic: {
     config: {
       // Custom config options here
     }
   }
 }
-``` -->
+```
 
 ## Vue CLI 3
 
@@ -208,7 +214,10 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        'bootstrap-components': path.resolve(__dirname, 'node_modules/bootstrap-vue/es/components'),
+        'bootstrap-components': path.resolve(
+          __dirname,
+          'node_modules/bootstrap-vue/es/components'
+        ),
         'bootstrap-a-components': path.resolve(
           __dirname,
           'node_modules/bootstrap-vue-arsenic/es/components'
