@@ -1,0 +1,22 @@
+{
+  "name": "@bootstrap-vue-arsenic/loading",
+  "version": "1.0.0",
+  "meta": {
+    "title": "Loading",
+    "components": [
+      {
+        "component": "BLoading",
+        "events": [
+          {
+            "event": "started",
+            "description": "Loading started"
+          },
+          {
+            "event": "ended",
+            "description": "Loading ended"
+          }
+        ]
+      }
+    ]
+  }
+}

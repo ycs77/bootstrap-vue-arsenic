@@ -39,6 +39,13 @@ const DEFAULTS = {
   // name (PascalCase) and prop name (camelCase)
   BAvatar: {
     variant: 'secondary'
+  },
+  BLoading: {
+    variant: 'primary',
+    type: 'border',
+    fade: false,
+    fixed: false,
+    slot: ''
   }
 }
 

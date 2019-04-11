@@ -6,3 +6,10 @@
 // Avatar
 
 $avatar-size: 2.5rem !default;
+
+// Loading
+
+$loading-padding-y:              1rem !default;
+$loading-padding-x:              0 !default;
+$loading-transition:             $transition-fade !default;
+$loading-fixed-background-color: $white !default;
