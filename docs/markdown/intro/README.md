@@ -78,26 +78,22 @@ yarn add bootstrap-vue-arsenic
 
 Add `bootstrap-vue/nuxt` and `bootstrap-vue-arsenic/nuxt` to modules section of **nuxt.config.js**.
 
-This will include both `boostrap.css`, `bootstrap-vue.css` and `bootstrap-vue-arsenic.css` default CSS.
+This will include both `boostrap.css`, `bootstrap-vue.css` and `bootstrap-vue-arsenic.css` default
+CSS.
 
 ```js
 module.exports = {
-  modules: [
-    'bootstrap-vue/nuxt',
-    'bootstrap-vue-arsenic/nuxt'
-  ]
+  modules: ['bootstrap-vue/nuxt', 'bootstrap-vue-arsenic/nuxt']
 }
 ```
 
-If you are using custom Bootstrap SCSS, you can disable automatic inclusion of Bootstrap, BootstrapVue and
-BootstrapVueArsenic pre-compiled CSS files by setting the following option(s) to `false`:
+If you are using custom Bootstrap SCSS, you can disable automatic inclusion of Bootstrap,
+BootstrapVue and BootstrapVueArsenic pre-compiled CSS files by setting the following option(s) to
+`false`:
 
 ```js
 module.exports = {
-  modules: [
-    'bootstrap-vue/nuxt',
-    'bootstrap-vue-arsenic/nuxt'
-  ],
+  modules: ['bootstrap-vue/nuxt', 'bootstrap-vue-arsenic/nuxt'],
   BootstrapVue: {
     bootstrapCSS: false, // or `css`
     bootstrapVueCSS: false // or `bvCSS`
@@ -108,8 +104,8 @@ module.exports = {
 }
 ```
 
-BootstrapVue and BootstrapVueArsenic's custom CSS relies on some Bootstrap SCSS variables.
-You can include Bootstrap, BootstrapVue and BootstrapVueArsenic SCSS in your project's custom SCSS file:
+BootstrapVue and BootstrapVueArsenic's custom CSS relies on some Bootstrap SCSS variables. You can
+include Bootstrap, BootstrapVue and BootstrapVueArsenic SCSS in your project's custom SCSS file:
 
 ```scss
 // custom.scss
@@ -144,10 +140,7 @@ you want to globally install in your Nuxt.js project.
 
 ```js
 module.exports = {
-  modules: [
-    'bootstrap-vue/nuxt',
-    'bootstrap-vue-arsenic/nuxt'
-  ],
+  modules: ['bootstrap-vue/nuxt', 'bootstrap-vue-arsenic/nuxt'],
   BootstrapVueArsenic: {
     componentPlugins: ['Avatar', 'Loading']
   }
@@ -157,15 +150,12 @@ module.exports = {
 ### Passing custom BootstrapVueArsenic config with Nuxt.js
 
 If you need to pass a custom
-[BootstrapVueArsenic configuration](/docs/misc/settings#default-bootstrapvuearsenic-configuration), you may due so
-by setting the `config` property in your `nuxt.config.js`:
+[BootstrapVueArsenic configuration](/docs/misc/settings#default-bootstrapvuearsenic-configuration),
+you may due so by setting the `config` property in your `nuxt.config.js`:
 
 ```js
 module.exports = {
-  modules: [
-    'bootstrap-vue/nuxt',
-    'bootstrap-vue-arsenic/nuxt'
-  ],
+  modules: ['bootstrap-vue/nuxt', 'bootstrap-vue-arsenic/nuxt'],
   BootstrapVueArsenic: {
     config: {
       // Custom config options here
@@ -214,10 +204,7 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        'bootstrap-components': path.resolve(
-          __dirname,
-          'node_modules/bootstrap-vue/es/components'
-        ),
+        'bootstrap-components': path.resolve(__dirname, 'node_modules/bootstrap-vue/es/components'),
         'bootstrap-a-components': path.resolve(
           __dirname,
           'node_modules/bootstrap-vue-arsenic/es/components'

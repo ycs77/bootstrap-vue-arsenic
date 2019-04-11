@@ -30,9 +30,7 @@ export default {
   functional: true,
   props,
   render(h, { props, data, children }) {
-    const imgStyle = props.img
-      ? { 'background-image': `url(${props.img})` }
-      : {}
+    const imgStyle = props.img ? { 'background-image': `url(${props.img})` } : {}
 
     const sizeStyle = props.size
       ? {

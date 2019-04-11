@@ -1,6 +1,7 @@
 # Loading
 
-> The `<b-loading>` component is display loading state icon. Default wrapper is the BootstrapVue [<b-spinner>](https://bootstrap-vue.js.org/docs/components/spinner) component.
+> The `<b-loading>` component is display loading state icon. Default wrapper is the BootstrapVue
+> [<b-spinner>](https://bootstrap-vue.js.org/docs/components/spinner) component.
 
 ```html
 <template>
@@ -17,13 +18,13 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      loading: true
+  export default {
+    data() {
+      return {
+        loading: true
+      }
     }
   }
-}
 </script>
 
 <!-- b-loading.vue -->
@@ -31,9 +32,9 @@ export default {
 
 ## Loading contextual variations
 
-Add any of the following variants via the `variant` prop to change the appearance of a `<b-loading>`:
-`primary`, `secondary`, `success`, `danger`, `warning`, `info`, `light`, and `dark`. If no variant
-is specified `primary` will be used.
+Add any of the following variants via the `variant` prop to change the appearance of a
+`<b-loading>`: `primary`, `secondary`, `success`, `danger`, `warning`, `info`, `light`, and `dark`.
+If no variant is specified `primary` will be used.
 
 ```html
 <template>
@@ -52,7 +53,9 @@ is specified `primary` will be used.
 
 ## Loading type
 
-Via the `type` prop to set loading type. [Bootstrap](https://bootstrap-vue.js.org) includes two types of spinners. The default spinner type is called `border` (spinning circle border), and the optional type `grow` (a throbber style indicator).
+Via the `type` prop to set loading type. [Bootstrap](https://bootstrap-vue.js.org) includes two
+types of spinners. The default spinner type is called `border` (spinning circle border), and the
+optional type `grow` (a throbber style indicator).
 
 ```html
 <template>
@@ -92,21 +95,21 @@ Via the `fixed` prop to enable fixed loading.
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      loading: false
-    }
-  },
-  methods: {
-    startLoading() {
-      this.loading = true
-      setTimeout(() => {
-        this.loading = false
-      }, 2000)
+  export default {
+    data() {
+      return {
+        loading: false
+      }
+    },
+    methods: {
+      startLoading() {
+        this.loading = true
+        setTimeout(() => {
+          this.loading = false
+        }, 2000)
+      }
     }
   }
-}
 </script>
 
 <!-- b-loading-fixed.vue -->
@@ -114,8 +117,8 @@ export default {
 
 ## Fading loading
 
-Use the `fade` prop to enable animation. By default loading are not animated.
-It is recommended to attach `fixed` prop when using.
+Use the `fade` prop to enable animation. By default loading are not animated. It is recommended to
+attach `fixed` prop when using.
 
 ```html
 <template>
@@ -130,21 +133,21 @@ It is recommended to attach `fixed` prop when using.
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      loading: false
-    }
-  },
-  methods: {
-    startLoading() {
-      this.loading = true
-      setTimeout(() => {
-        this.loading = false
-      }, 2000)
+  export default {
+    data() {
+      return {
+        loading: false
+      }
+    },
+    methods: {
+      startLoading() {
+        this.loading = true
+        setTimeout(() => {
+          this.loading = false
+        }, 2000)
+      }
     }
   }
-}
 </script>
 
 <!-- b-loading-fading.vue -->
@@ -153,6 +156,8 @@ export default {
 ## Set global render loading content
 
 Set global config render loading content use string.
+
+<!-- eslint-disable no-undef -->
 
 ```js
 Vue.use(Loading, {
@@ -163,6 +168,8 @@ Vue.use(Loading, {
 ```
 
 Or set Vue component.
+
+<!-- eslint-disable no-undef -->
 
 ```js
 import CustomLoadingComponent from './components/custom-loading.vue'

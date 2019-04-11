@@ -8,7 +8,8 @@ BootstrapVueArsenic components have props with default variants and text content
 
 BootstrapVueArsenic provides several methods for changing the default configuration.
 
-Note that it is not possible to change the defaults when using BootstrapVueArsenic via a `<script>` tag.
+Note that it is not possible to change the defaults when using BootstrapVueArsenic via a `<script>`
+tag.
 
 ### Default BootstrapVueArsenic configuration
 
@@ -23,12 +24,12 @@ property that is not defined in the default will generate a console warning.
 
 ### Setting new configuration values
 
-When you `Vue.use(BootstrapVueArsenic)`, you can optionally pass a configuration object which specifies new
-values to replace the default values. For example if you wish to define new breakpoint names (which
-will generate appropriate properties on components such as `<b-col>` and `<b-form-group>`), so that
-the new breakpoints are `['aa', 'bb', 'cc', 'dd']` then `<b-col>` will now have `bb`, `cc`, and `dd`
-props instead of `sm`, `md`, `lg` and `xl` props (Similar for the `label-cols-{breakpoint}` and
-`label-align-{breakpoint}`props on `<b-form-group>`):
+When you `Vue.use(BootstrapVueArsenic)`, you can optionally pass a configuration object which
+specifies new values to replace the default values. For example if you wish to define new breakpoint
+names (which will generate appropriate properties on components such as `<b-col>` and
+`<b-form-group>`), so that the new breakpoints are `['aa', 'bb', 'cc', 'dd']` then `<b-col>` will
+now have `bb`, `cc`, and `dd` props instead of `sm`, `md`, `lg` and `xl` props (Similar for the
+`label-cols-{breakpoint}` and `label-align-{breakpoint}`props on `<b-form-group>`):
 
 ```js
 import BootstrapVueArsenic from 'bootstrap-vue-arsenic'
@@ -69,7 +70,6 @@ and subsequent changes to the breakpoints will **not** be reflected.
 ```js
 import Layout from 'bootstrap-vue-arsenic/es/components/layout'
 import Alert from 'bootstrap-vue-arsenic/es/components/alert'
-import Button from 'bootstrap-vue-arsenic/es/components/button'
 
 // Supply configs via each plugin as it is `Vue.use()`'d
 Vue.use(Layout, { breakpoints: ['xs', 'sm', 'lg', 'xl', 'xxl'] })
@@ -131,9 +131,9 @@ the config object to the Nuxt.js plugin module.
 
 ## Disabling BootstrapVueArsenic console warnings
 
-BootstrapVueArsenic will warn (via `console.warn`) when you try and use a deprecated prop, or pass an
-invalid value to certain props. These warnings are provided to help you ensure that your application
-is using the correct props and values.
+BootstrapVueArsenic will warn (via `console.warn`) when you try and use a deprecated prop, or pass
+an invalid value to certain props. These warnings are provided to help you ensure that your
+application is using the correct props and values.
 
 In some cases, you may want to disable these warnings (not recommended). You can do so by setting
 the following process environment variable:

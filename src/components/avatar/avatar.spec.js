@@ -36,7 +36,9 @@ describe('avatar', () => {
     expect(wrapper.classes()).toContain('avatar-secondary')
     expect(wrapper.classes()).not.toContain('avatar-rounded')
     expect(wrapper.classes()).not.toContain('avatar-square')
-    expect(wrapper.attributes().style).toBe('font-size: calc(4rem / 2); width: 4rem; height: 4rem; max-width: 4rem; max-height: 4rem;')
+    expect(wrapper.attributes().style).toBe(
+      'font-size: calc(4rem / 2); width: 4rem; height: 4rem; max-width: 4rem; max-height: 4rem;'
+    )
   })
 
   it('should apply font size', async () => {

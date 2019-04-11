@@ -4,3 +4,4 @@ docs-dist/
 es/
 node_modules/
 nuxt/plugin.template.js
+src/_variables.scss
