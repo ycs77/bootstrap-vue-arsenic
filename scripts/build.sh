@@ -9,11 +9,6 @@ echo ''
 # Cleanup
 rm -rf dist es
 
-echo 'Prettify JS...'
-npm run prettify
-echo 'Done.'
-echo ''
-
 # Compile JS...
 scripts/compile-js.sh
 

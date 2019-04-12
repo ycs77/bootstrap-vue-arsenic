@@ -57,7 +57,7 @@ export default {
         })
       }
     },
-    onBeforeLeave() {
+    onBeforeLeave() /* istanbul ignore next: does not appear to be called in vue-test-utils */ {
       this.showClass = false
     }
   },

@@ -1,6 +1,6 @@
 {
   "name": "bootstrap-vue-arsenic",
-  "description": "The Bootstrap Vue admin components.",
+  "description": "Extended component library based on BootstrapVue",
   "version": "0.1.0",
   "keywords": [
     "css",
@@ -32,7 +32,7 @@
     "dist": "npm-run-all prettify test build",
     "release": "standard-version"
   },
-  "homepage": "https://ycs77.github.io/bootstrap-vue-arsenic/",
+  "homepage": "https://bootstrap-vue-arsenic.js.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ycs77/bootstrap-vue-arsenic.git"
@@ -73,7 +73,9 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.7.0",
+    "babel-plugin-istanbul": "^5.1.1",
     "clean-css-cli": "^4.2.1",
+    "codecov": "^3.2.0",
     "codemirror": "^5.45.0",
     "cross-env": "^5.2.0",
     "eslint": "^5.16.0",

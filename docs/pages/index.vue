@@ -8,9 +8,9 @@
         <div class="col-md-6 order-md-1 text-center text-md-left pr-md-5">
           <h1 class="mb-3 bd-text-purple-bright">Bootstrap Vue Arsenic</h1>
           <p class="lead mb-3">
-            The
+            Extended component library based on
             <a href="https://bootstrap-vue.js.org" target="_blank">BootstrapVue</a>
-            admin components.
+            .
           </p>
           <p class="mb-2 text-muted">
             <a href="https://getbootstrap.com" target="_blank">Bootstrap 4</a>
