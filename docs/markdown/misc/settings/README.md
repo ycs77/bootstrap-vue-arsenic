@@ -125,8 +125,8 @@ before any `Vue.use()` of component plugins.
 
 ### Setting the config via Nuxt.js BootstrapVueArsenic plugin
 
-Refer to the [Getting Started](/docs/#nuxtjs-module) documentation for information on passing
-the config object to the Nuxt.js plugin module.
+Refer to the [Getting Started](/docs/#nuxtjs-module) documentation for information on passing the
+config object to the Nuxt.js plugin module.
 
 ## Disabling BootstrapVueArsenic console warnings
 

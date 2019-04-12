@@ -54,6 +54,7 @@
     "./docs"
   ],
   "dependencies": {
+    "@nuxtjs/google-analytics": "^2.2.0",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.18",
     "vue-functional-data-merge": "^2.0.7"

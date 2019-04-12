@@ -144,17 +144,14 @@ module.exports = {
     '~/plugins/docs.js'
   ],
 
-  modules: [
-    '@nuxtjs/pwa'
-    // '@nuxtjs/google-analytics'
-  ],
+  modules: ['@nuxtjs/pwa', '@nuxtjs/google-analytics'],
 
-  // 'google-analytics': {
-  //   id: 'UA-x',
-  //   autoTracking: {
-  //     exception: true
-  //   }
-  // },
+  'google-analytics': {
+    id: 'UA-138225806-1',
+    autoTracking: {
+      exception: true
+    }
+  },
 
   head: {
     meta: [{ 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' }],
