@@ -57,10 +57,6 @@ module.exports = {
 
   modern: 'client',
 
-  router: {
-    base: process.env.DEPLOY_ENV === 'gh_pages' ? '/bootstrap-vue-arsenic/' : '/'
-  },
-
   build: {
     extractCSS: true,
     cssSourceMap: true,
