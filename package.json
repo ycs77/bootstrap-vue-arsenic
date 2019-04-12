@@ -22,7 +22,7 @@
     "docs-build": "cross-env NODE_ENV=docs nuxt build -c docs/nuxt.config.js",
     "docs-gen": "cross-env NODE_ENV=docs nuxt generate -c docs/nuxt.config.js",
     "docs-start": "cross-env NODE_ENV=docs nuxt start -c docs/nuxt.config.js",
-    "docs-publish": "npm run docs-gen && gh-pages -t -d docs-dist",
+    "docs-publish": "sh scripts/docs-publish.sh",
     "test": "jest",
     "lint": "eslint --ext .js,.md,.vue ./",
     "prettify": "prettier --write \"**/*.{js,json,md,scss,vue}\"",
