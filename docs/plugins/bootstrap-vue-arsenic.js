@@ -1,4 +1,4 @@
 import Vue from 'vue'
 import BootstrapVueArsenic from '../../src'
 
-Vue.use(BootstrapVueArsenic)
+Vue.use(BootstrapVueArsenic, {})

@@ -4,7 +4,7 @@ import warn from './warn'
 import { isArray } from './array'
 import { keys, isObject } from './object'
 
-// General Bootstrap Vue configuration
+// General BootstrapVueArsenic configuration
 //
 // BREAKPOINT DEFINITIONS
 //
@@ -26,7 +26,7 @@ import { keys, isObject } from './object'
 //  props: {
 //    variant: {
 //      type: String,
-//      default: () => getConfigComponent('BAvatar', 'variant')
+//      default: () => String(getConfigComponent('BAvatar', 'variant'))
 //    }
 //  }
 

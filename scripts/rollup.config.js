@@ -11,18 +11,18 @@ const base = path.resolve(__dirname, '..')
 const src = path.resolve(base, 'src')
 const dist = path.resolve(base, 'dist')
 
+const externals = ['vue', ...Object.keys(dependencies)]
+
 // Libs in `external` will not be bundled to dist,
 // since they are expected to be provided later.
-// We want to include some of them in the build, so we exclude it here.
-const externalExcludes = [
-  // 'popper.js',
-  'vue-functional-data-merge'
-]
+// In some cases, wee want to include some of them in the build, so we
+// exclude the external here.
+const externalExcludes = ['vue-functional-data-merge']
 
 // The base rollup configuration
 const baseConfig = {
   input: path.resolve(src, 'index.js'),
-  external: Object.keys(dependencies),
+  external: externals,
   plugins: [
     resolve({ external: ['vue'] }),
     commonjs(),
@@ -40,19 +40,22 @@ export default [
   // UMD
   {
     ...baseConfig,
-    external: Object.keys(dependencies).filter(dep => !externalExcludes.includes(dep)),
+    external: externals.filter(dep => !externalExcludes.includes(dep)),
     output: {
       format: 'umd',
       name: camelCase(name),
       file: path.resolve(dist, `${name}.js`),
-      sourcemap: true
+      sourcemap: true,
+      globals: {
+        vue: 'Vue'
+      }
     }
   },
 
   // COMMON
   {
     ...baseConfig,
-    external: Object.keys(dependencies).filter(dep => !externalExcludes.includes(dep)),
+    external: externals.filter(dep => !externalExcludes.includes(dep)),
     output: {
       format: 'cjs',
       name: camelCase(name),
@@ -61,7 +64,7 @@ export default [
     }
   },
 
-  // ES
+  // ESM
   {
     ...baseConfig,
     output: {

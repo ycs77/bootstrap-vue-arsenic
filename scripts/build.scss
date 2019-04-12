@@ -1,0 +1,11 @@
+/*!
+ * BootstrapVueArsenic Custom CSS (https://bootstrap-vue-arsenic.js.org)
+ */
+
+// Include Bootstrap functions, variables, and mixins
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+// Import BootstrapVueArsenic custom SCSS
+@import "../src/index.scss";

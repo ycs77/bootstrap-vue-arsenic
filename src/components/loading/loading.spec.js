@@ -1,5 +1,5 @@
-import Loading from './loading'
 import LoadingPlugin from '../loading'
+import BLoading from './loading'
 import BSpinner from 'bootstrap-vue/es/components/spinner/spinner'
 import { resetConfig } from '../../utils/config'
 import StubComponent from '../../../tests/stub-component.vue'
@@ -7,7 +7,7 @@ import { createLocalVue, mount } from '@vue/test-utils'
 
 describe('loading', () => {
   it('hidden loading and spinner renders comment node', async () => {
-    const wrapper = mount(Loading)
+    const wrapper = mount(BLoading)
     expect(wrapper.isVueInstance()).toBe(true)
     expect(wrapper.isEmpty()).toBe(true)
     expect(wrapper.html()).not.toBeDefined()
@@ -16,7 +16,7 @@ describe('loading', () => {
   })
 
   it('visible loading and spinner has default class names', async () => {
-    const wrapper = mount(Loading, {
+    const wrapper = mount(BLoading, {
       propsData: {
         show: true
       },
@@ -41,7 +41,7 @@ describe('loading', () => {
   })
 
   it('shoud have default slot content', async () => {
-    const wrapper = mount(Loading, {
+    const wrapper = mount(BLoading, {
       slots: {
         default: 'Loading...'
       },
@@ -61,7 +61,7 @@ describe('loading', () => {
   })
 
   it('shoud apply variant class', async () => {
-    const wrapper = mount(Loading, {
+    const wrapper = mount(BLoading, {
       propsData: {
         show: true,
         variant: 'danger'
@@ -82,7 +82,7 @@ describe('loading', () => {
   })
 
   it('shoud have spinner type class', async () => {
-    const wrapper = mount(Loading, {
+    const wrapper = mount(BLoading, {
       propsData: {
         show: true,
         type: 'grow'
@@ -103,7 +103,7 @@ describe('loading', () => {
   })
 
   it('shoud have spinner small class', async () => {
-    const wrapper = mount(Loading, {
+    const wrapper = mount(BLoading, {
       propsData: {
         show: true,
         small: true
@@ -125,7 +125,7 @@ describe('loading', () => {
   })
 
   it('should apply loading fixed', async () => {
-    const wrapper = mount(Loading, {
+    const wrapper = mount(BLoading, {
       propsData: {
         show: true,
         fixed: true
@@ -145,7 +145,7 @@ describe('loading', () => {
   })
 
   it('should have class fade when prop fade=true', async () => {
-    const wrapper = mount(Loading, {
+    const wrapper = mount(BLoading, {
       propsData: {
         show: true,
         fade: true
@@ -167,7 +167,7 @@ describe('loading', () => {
   })
 
   it('fade transition works', async () => {
-    const wrapper = mount(Loading, {
+    const wrapper = mount(BLoading, {
       propsData: {
         show: false,
         fade: true
@@ -213,7 +213,7 @@ describe('loading', () => {
       }
     })
 
-    const wrapper = mount(Loading, {
+    const wrapper = mount(BLoading, {
       propsData: {
         show: true
       }
@@ -235,7 +235,7 @@ describe('loading', () => {
       }
     })
 
-    const wrapper = mount(Loading, {
+    const wrapper = mount(BLoading, {
       propsData: {
         show: true
       }

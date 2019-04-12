@@ -1,13 +1,13 @@
 const fs = require('fs')
 const path = require('path')
-const hljs = require('highlightjs')
+const hljs = require('highlight.js')
 const marked = require('marked')
 
 const renderer = new marked.Renderer()
 
 const ANCHOR_LINK_HEADING_LEVELS = [2, 3, 4, 5]
 
-// Custom "highlightjs" implementation for markdown renderer
+// Custom "highlight.js" implementation for markdown renderer
 renderer.code = (code, language) => {
   const validLang = !!(language && hljs.getLanguage(language))
   const highlighted = validLang ? hljs.highlight(language, code).value : code
@@ -42,12 +42,17 @@ renderer.heading = function(text, level, raw, slugger) {
   return `<h${level} id="${link}">${getTextMarkup(text + anchor)}</h${level}>\n`
 }
 
+// Convert lead-in blockquote paragraphs to true bootstrap docs leads
+renderer.blockquote = function(text) {
+  return text.replace('<p>', '<p class="bd-lead">')
+}
+
 // BS4 table support for markdown renderer
 const originalTable = renderer.table
 renderer.table = function(header, body) {
   let table = originalTable.apply(this, arguments)
   table = table
-    .replace('<table>', '<table class="table b-table table-striped table-sm bv-docs-table">')
+    .replace('<table>', '<table class="b-table table table-bordered table-striped bv-docs-table">')
     .replace('<thead>', '<thead class="thead-default">')
   return `<div class="table-responsive-sm">${table}</div>`
 }
@@ -86,7 +91,7 @@ module.exports = {
               renderer,
               // headerIds must always be true, since Search and Table of Contents rely on the IDs
               headerIds: true,
-              // Handle GitHub falvoured markdown
+              // Handle GitHub flavoured markdown
               gfm: true
             }
           }
@@ -157,10 +162,10 @@ module.exports = {
   },
 
   css: [
-    'highlightjs/styles/atom-one-light.css',
+    'highlight.js/styles/atom-one-light.css',
     'codemirror/lib/codemirror.css',
     'bootstrap/dist/css/bootstrap.css',
-    '../src/index.scss', // BootstrapVueArsenic SCSS
+    '../scripts/build.scss', // BootstrapVueArsenic SCSS
     '@assets/css/docs.min.css',
     '@assets/scss/styles.scss'
   ]

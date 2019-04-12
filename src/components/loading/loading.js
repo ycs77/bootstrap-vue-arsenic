@@ -1,9 +1,11 @@
+import Vue from 'vue'
 import { getComponentConfig } from '../../utils/config'
 import { requestAF } from '../../utils/dom'
 
 const NAME = 'BLoading'
 
-export default {
+// @vue/component
+export default Vue.extend({
   name: NAME,
   model: {
     prop: 'show',
@@ -12,7 +14,7 @@ export default {
   props: {
     variant: {
       type: String,
-      default: () => getComponentConfig(NAME, 'variant')
+      default: () => String(getComponentConfig(NAME, 'variant'))
     },
     show: {
       type: Boolean,
@@ -20,7 +22,7 @@ export default {
     },
     type: {
       type: String,
-      default: () => getComponentConfig(NAME, 'type')
+      default: () => String(getComponentConfig(NAME, 'type'))
     },
     small: {
       type: Boolean,
@@ -28,11 +30,11 @@ export default {
     },
     fade: {
       type: Boolean,
-      default: () => getComponentConfig(NAME, 'fade')
+      default: () => Boolean(getComponentConfig(NAME, 'fade'))
     },
     fixed: {
       type: Boolean,
-      default: () => getComponentConfig(NAME, 'fixed')
+      default: () => Boolean(getComponentConfig(NAME, 'fixed'))
     }
   },
   data() {
@@ -119,4 +121,4 @@ export default {
       $loading
     )
   }
-}
+})

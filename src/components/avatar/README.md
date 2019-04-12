@@ -4,7 +4,7 @@
 
 ```html
 <template>
-  <b-avatar img="user.svg" />
+  <b-avatar img="/user.svg" />
   <b-avatar>A</b-avatar>
 </template>
 
@@ -17,9 +17,9 @@ Via the `size` prop to set avatar width and height. If no size is specified `2.5
 
 ```html
 <template>
-  <b-avatar img="user.svg" size="1.5rem" />
-  <b-avatar img="user.svg" />
-  <b-avatar img="user.svg" size="4rem" />
+  <b-avatar img="/user.svg" size="1.5rem" />
+  <b-avatar img="/user.svg" />
+  <b-avatar img="/user.svg" size="4rem" />
   <b-avatar size="1.5rem">A</b-avatar>
   <b-avatar>A</b-avatar>
   <b-avatar size="4rem">A</b-avatar>

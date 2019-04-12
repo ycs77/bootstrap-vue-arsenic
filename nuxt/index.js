@@ -33,10 +33,15 @@ module.exports = function nuxtBootstrapVueArsenic(moduleOptions = {}) {
       this.options.css.unshift('bootstrap-vue-arsenic/dist/bootstrap-vue-arsenic.css')
     }
 
-    // Transpile src
+    // Transpile src/
     this.options.build.transpile.push('bootstrap-vue-arsenic/src')
 
-    const templateOptions = {}
+    // Use es/ or src/
+    const usePretranspiled = pickFirst(options.usePretranspiled, this.options.dev)
+
+    const templateOptions = {
+      dist: usePretranspiled ? 'es' : 'src'
+    }
 
     // TODO: Also add support for individual components & directives
     // for (const type of ['componentPlugins', 'directivePlugins']) {

@@ -1,10 +1,14 @@
 # Getting Started
 
-**BootstrapVueArsenic** requires:
+> Get started with BootstrapVue, based on the world’s most popular framework - Bootstrap V4, for
+> building responsive, mobile-first sites using Vue.js.
 
-- [Vue.js](https://vuejs.org) version {{ vueVersion }} (or greater)
-- [Bootstrap](https://getbootstrap.com) version {{ bootstrapVersion }} (or greater) SCSS/CSS
-- [BootstrapVue](https://bootstrap-vue.js.org) version {{ bootstrapVueVersion }} (or greater)
+- [Vue.js](https://vuejs.org) version <code>{{ vueVersion }}</code> (or greater) is recommended
+- BootstrapVueArsenic requires [Bootstrap](https://getbootstrap.com) version
+  <code>{{ bootstrapVersion }}</code> SCSS/CSS
+- BootstrapVueArsenic requires [BootstrapVue](https://bootstrap-vue.js.org) version
+  <code>{{ bootstrapVueVersion }}</code> vue components
+- jQuery is **not** required
 
 ## General
 
@@ -42,7 +46,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap-vue-arsenic/dist/bootstrap-vue-arsenic.css'
 ```
 
-Or import Bootstrap and BootstrapVueArsenic `scss` files via a custom SCSS file:
+Or import Bootstrap and BootstrapVueArsenic `scss` files via a single custom SCSS file:
 
 ```scss
 // custom.scss
@@ -56,15 +60,24 @@ Or import Bootstrap and BootstrapVueArsenic `scss` files via a custom SCSS file:
 import 'custom.scss'
 ```
 
-Be sure to include your custom variables before `bootstrap.scss` and include BootstrapVueArsenic
-SCSS _after_ Bootstrap SCSS to ensure variables are set up correctly.
+Be sure to `@import` or define your custom variable values _before_ including Bootstrap SCSS
+(`bootstrap.scss`), BootstrapVue SCSS (`bootstrap-vue.scss`), and include BootstrapVueArsenic SCSS
+(`bootstrap-vue-arsenic.scss`) _after that_ to ensure variables are set up correctly.
+
+Make sure you place all the SCSS `@import`s into a single SCSS file, and import that single file
+into your project. Importing individual SCSS files into your project will **not** share variable
+values and functions between files by default.
 
 **Note**: _Requires webpack configuration to load CSS/SCSS files
 ([official guide](https://webpack.js.org/guides/asset-management/#loading-css))_.
 
-## Nuxt.js plugin module
+For information on theming Bootstrap, check out the
+[BootstrapVue Theming](<[/docs/reference/theming](https://bootstrap-vue.js.org/docs/reference/theming)>)
+reference section.
 
-[Nuxt.js](https://nuxtjs.org) version {{ nuxtVersion }} (or greater) is recommended.
+## Nuxt.js Module
+
+[Nuxt.js](https://nuxtjs.org) version <code>{{ nuxtVersion }}</code> (or greater) is recommended.
 
 Install dependencies:
 
@@ -95,8 +108,8 @@ BootstrapVue and BootstrapVueArsenic pre-compiled CSS files by setting the follo
 module.exports = {
   modules: ['bootstrap-vue/nuxt', 'bootstrap-vue-arsenic/nuxt'],
   BootstrapVue: {
-    bootstrapCSS: false, // or `css`
-    bootstrapVueCSS: false // or `bvCSS`
+    bootstrapCSS: false, // Or css: false,
+    bootstrapVueCSS: false // Or bvCSS: false
   },
   BootstrapVueArsenic: {
     css: false
@@ -104,7 +117,7 @@ module.exports = {
 }
 ```
 
-BootstrapVue and BootstrapVueArsenic's custom CSS relies on some Bootstrap SCSS variables. You can
+BootstrapVue and BootstrapVueArsenic's custom SCSS relies on some Bootstrap SCSS variables. You can
 include Bootstrap, BootstrapVue and BootstrapVueArsenic SCSS in your project's custom SCSS file:
 
 ```scss
@@ -151,7 +164,7 @@ module.exports = {
 
 If you need to pass a custom
 [BootstrapVueArsenic configuration](/docs/misc/settings#default-bootstrapvuearsenic-configuration),
-you may due so by setting the `config` property in your `nuxt.config.js`:
+you may do so by setting the `config` property in your `nuxt.config.js`:
 
 ```js
 module.exports = {
@@ -163,6 +176,14 @@ module.exports = {
   }
 }
 ```
+
+### Using pretranspiled version of BootstrapVueArsenic for Nuxt.js
+
+Nuxt module uses precompiled version of BootstrapVueArsenic for faster development builds and the
+source of BootstrapVueArsenic for higher quality production builds.
+
+You can override this option using `usePretranspiled` option. Setting to `true` uses `es/` instead
+of `src/`. By default `usePretranspiled` is enabled in development mode only.
 
 ## Vue CLI 3
 
@@ -219,6 +240,26 @@ For additional configuration for Vue CLI 3 for using project relative paths for 
 various BootstrapVue and BootstrapVueArsenic components, refer to the Vue CLI 3 section of the
 [Image Src Resolving](/docs/reference/images#vue-cli-3-support) reference page.
 
+## Selective component and directive inclusion in module bundlers
+
+When using a module bundler you can optionally import only specific components groups, components
+and/or directives.
+
+### Component groups as Vue plugins
+
+You can also import component groups as Vue plugins by importing the component group or directive
+directory:
+
+<!-- eslint-disable import/first, import/no-duplicates -->
+
+```js
+// This imports <b-avatar> as a plugin:
+import { Avatar } from 'bootstrap-vue-arsenic/es/components'
+Vue.use(Avatar)
+```
+
+Refer to the component documentation for details.
+
 ## Individual components
 
 If you would like to only pull in a specific component or set of components, you can do this by
@@ -258,21 +299,6 @@ Vue.component('b-loading', BLoading)
 Vue and ES2015 allow for various syntaxes here, so feel free to utilize kebab-casing (shown),
 camelCasing, PascalCasing, and/or object property shorthand.
 
-### Component groups as Vue plugins
-
-You can also import component groups as Vue plugins by importing the component group or directive
-directory:
-
-<!-- eslint-disable import/first, import/no-duplicates -->
-
-```js
-// This imports <b-avatar> as a plugin:
-import { Avatar } from 'bootstrap-vue-arsenic/es/components'
-Vue.use(Avatar)
-```
-
-Refer to the component documentation for details.
-
 ### webpack + Babel
 
 When importing components individually, you must configure your app to properly build the
@@ -307,8 +333,17 @@ module.exports = {
 
 ## Browser
 
+Add the Boostrap, BootstrapVue and BootstrapVueArsenic CSS URLs in your HTML `<head>` section,
+followed by the required JavaScript files.
+
+When supporting older browsers (see [Browser Support](#browser-support) below), you will need to
+include a polyfill for handling modern JavaScript features before loading Vue and BoostrapVue
+JavaScript files.
+
 ```html
 <!-- Add this to <head> -->
+
+<!-- Load required Bootstrap, BootstrapVue and BootstrapVueArsenic CSS -->
 <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
 <link
   type="text/css"
@@ -334,16 +369,19 @@ bundler supports es modules, it will automatically prefer it over commonjs.
 
 | Variant        | Environments          | Package path                                                                           |
 | -------------- | --------------------- | -------------------------------------------------------------------------------------- |
-| **ES Module**  | webpack 2 / rollup.js | `es/index.js`                                                                          |
+| **ES Modules** | webpack 2 / rollup.js | `es/index.js`                                                                          |
 | **ESM Module** | webpack 2 / rollup.js | `dist/bootstrap-vue-arsenic.esm.js` _or_ `dist/bootstrap-vue-arsenic.esm.min.js`       |
 | commonjs2      | webpack 1 / ...       | `dist/bootstrap-vue-arsenic.common.js` _or_ `dist/bootstrap-vue-arsenic.common.min.js` |
 | UMD            | Browser               | `dist/bootstrap-vue-arsenic.js` _or_ `dist/bootstrap-vue-arsenic.min.js`               |
+
+BootstrapVueArsenic relies on `vue-functional-data-merge` (for functional components). This
+dependency are included in the `commonjs2` and `UMD` bundles.
 
 ## Browser Support
 
 ### CSS
 
-BootstrapVueArsenic is to be used with Bootstrap 4 CSS/SCSS. Please see
+BootstrapVueArsenic is to be used with Bootstrap 4.3 CSS/SCSS. Please see
 [Browsers and devices](https://getbootstrap.com/docs/4.3/getting-started/browsers-devices) for more
 information about browsers currently supported by Bootstrap 4.
 
@@ -357,6 +395,9 @@ If you want to support older IE, Android and IOS devices, you may want to use
 
 - `npm install @babel/polyfill`
 - Import it in your app main entry point with `import '@babel/polyfill'`
+
+Or use [Polyfill.io](https://polyfill.io/) to dynamically serve browser specific polyfills via
+`<script>` tags in the HTML `<head>` section.
 
 ## Tooling Support
 

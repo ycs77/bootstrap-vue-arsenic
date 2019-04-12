@@ -1,9 +1,9 @@
-import Avatar from './avatar'
+import BAvatar from './avatar'
 import { mount } from '@vue/test-utils'
 
 describe('avatar', () => {
   it('should have base classes', async () => {
-    const wrapper = mount(Avatar)
+    const wrapper = mount(BAvatar)
     expect(wrapper.is('span')).toBe(true)
     expect(wrapper.classes()).toContain('avatar')
     expect(wrapper.classes()).toContain('avatar-secondary')
@@ -12,7 +12,7 @@ describe('avatar', () => {
   })
 
   it('should have default slot content', async () => {
-    const wrapper = mount(Avatar, {
+    const wrapper = mount(BAvatar, {
       slots: {
         default: 'A'
       }
@@ -26,7 +26,7 @@ describe('avatar', () => {
   })
 
   it('should apply size', async () => {
-    const wrapper = mount(Avatar, {
+    const wrapper = mount(BAvatar, {
       propsData: {
         size: '4rem'
       }
@@ -42,7 +42,7 @@ describe('avatar', () => {
   })
 
   it('should apply font size', async () => {
-    const wrapper = mount(Avatar, {
+    const wrapper = mount(BAvatar, {
       propsData: {
         'font-size': '1.75rem'
       }
@@ -56,7 +56,7 @@ describe('avatar', () => {
   })
 
   it('should apply variant class', async () => {
-    const wrapper = mount(Avatar, {
+    const wrapper = mount(BAvatar, {
       propsData: {
         variant: 'danger'
       }
@@ -69,7 +69,7 @@ describe('avatar', () => {
   })
 
   it('should apply rounded class', async () => {
-    const wrapper = mount(Avatar, {
+    const wrapper = mount(BAvatar, {
       propsData: {
         rounded: true
       }
@@ -82,7 +82,7 @@ describe('avatar', () => {
   })
 
   it('should apply square class', async () => {
-    const wrapper = mount(Avatar, {
+    const wrapper = mount(BAvatar, {
       propsData: {
         square: true
       }

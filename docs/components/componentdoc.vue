@@ -37,8 +37,8 @@
         :fields="propsFields"
         class="bv-docs-table"
         responsive="sm"
-        small
         head-variant="default"
+        bordered
         striped
       >
         <template slot="prop" slot-scope="{ value, item }">
@@ -62,15 +62,15 @@
 
       <template v-if="componentVModel">
         <anchored-heading :id="`comp-ref-${componentName}-v-model`" level="4">
-          V-Model
+          v-model
         </anchored-heading>
         <b-table
           :items="[componentVModel]"
           :fields="['prop', 'event']"
           class="bv-docs-table"
           responsive="sm"
-          small
           head-variant="default"
+          bordered
           striped
         >
           <template slot="prop" slot-scope="{ value }">
@@ -92,8 +92,8 @@
         :fields="slotsFields"
         class="bv-docs-table"
         responsive="sm"
-        small
         head-variant="default"
+        bordered
         striped
       >
         <template slot="name" slot-scope="{ value }">
@@ -111,8 +111,8 @@
         :fields="eventsFields"
         class="bv-docs-table"
         responsive="sm"
-        small
         head-variant="default"
+        bordered
         striped
       >
         <template slot="event" slot-scope="{ value }">
@@ -146,8 +146,8 @@
         :fields="rootEventListenersFields"
         class="bv-docs-table"
         responsive="sm"
-        small
         head-variant="default"
+        bordered
         striped
       >
         <template slot="event" slot-scope="{ value }">
@@ -212,8 +212,12 @@ export default {
       let options = {}
       if (!component.options && typeof component === 'function') {
         // Async component that hans't been resolved yet
-        component(opts => {
-          options = opts ? { ...opts } : {}
+        component(cmp => {
+          if (Object.prototype.toString.call(cmp) === '[object Object]') {
+            options = { ...cmp }
+          } else if (cmp && cmp.options) {
+            options = cmp.options
+          }
         })
       } else {
         // Regular component

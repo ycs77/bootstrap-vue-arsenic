@@ -1,5 +1,7 @@
 # Settings
 
+> BootstrapVueArsenic provides a few options for customizing component default values, and more.
+
 ## Configuring BootstrapVueArsenic defaults
 
 BootstrapVueArsenic is pre-configured for the default Bootstrap V4.x configuration. It assumes the
@@ -18,9 +20,9 @@ keyed by their <samp>PascalCase</samp> name with the props as <samp>camelCase</s
 Only properties defined in the default configuration can be overridden. Attempting to set a config
 property that is not defined in the default will generate a console warning.
 
-<pre class="hljs json text-monospace p-2">
+```json
 {{ defaultConfig }}
-</pre>
+```
 
 ### Setting new configuration values
 
@@ -68,12 +70,12 @@ and subsequent changes to the breakpoints will **not** be reflected.
 <!-- eslint-disable import/first, import/no-duplicates -->
 
 ```js
-import Layout from 'bootstrap-vue-arsenic/es/components/layout'
-import Alert from 'bootstrap-vue-arsenic/es/components/alert'
+import Avatar from 'bootstrap-vue-arsenic/es/components/alert'
+import Loading from 'bootstrap-vue-arsenic/es/components/loading'
 
 // Supply configs via each plugin as it is `Vue.use()`'d
-Vue.use(Layout, { breakpoints: ['xs', 'sm', 'lg', 'xl', 'xxl'] })
-Vue.use(Alert, { BAvatar: { variant: 'danger' } })
+Vue.use(Avatar, { BAvatar: { variant: 'danger' } })
+Vue.use(Loading, { BLoading: { fade: true } })
 ```
 
 **Example 2:**
@@ -81,17 +83,15 @@ Vue.use(Alert, { BAvatar: { variant: 'danger' } })
 <!-- eslint-disable import/first, import/no-duplicates -->
 
 ```js
-import Layout from 'bootstrap-vue-arsenic/es/components/layout'
-import Alert from 'bootstrap-vue-arsenic/es/components/alert'
-import Button from 'bootstrap-vue-arsenic/es/components/button'
+import Avatar from 'bootstrap-vue-arsenic/es/components/alert'
+import Loading from 'bootstrap-vue-arsenic/es/components/loading'
 
 // Supply complete config to first `Vue.use()`'d plugin
-Vue.use(Layout, {
-  breakpoints: ['xs', 'sm', 'lg', 'xl', 'xxl'],
-  BAvatar: { variant: 'danger' }
+Vue.use(Avatar, {
+  BAvatar: { variant: 'danger' },
+  BLoading: { fade: true }
 })
-Vue.use(Alert)
-Vue.use(Button)
+Vue.use(Loading)
 ```
 
 **Example 3 (most preferred method):**
@@ -102,20 +102,19 @@ Vue.use(Button)
 // BootstrapVueArsenic configuration helper plugin
 import BAConfig from 'bootstrap-vue-arsenic/es/ba-config'
 // Component plugins
-import Layout from 'bootstrap-vue-arsenic/es/components/layout'
-import Alert from 'bootstrap-vue-arsenic/es/components/alert'
-import Button from 'bootstrap-vue-arsenic/es/components/button'
+import Avatar from 'bootstrap-vue-arsenic/es/components/alert'
+import Loading from 'bootstrap-vue-arsenic/es/components/loading'
 
 // Supply complete config to the BAConfig helper plugin
 Vue.use(BAConfig, {
   breakpoints: ['xs', 'sm', 'lg', 'xl', 'xxl'],
-  BAvatar: { variant: 'danger' }
+  BAvatar: { variant: 'danger' },
+  BLoading: { fade: true }
 })
 
 // Then use component plugins
-Vue.use(Layout)
-Vue.use(Alert)
-Vue.use(Button)
+Vue.use(Avatar)
+Vue.use(Loading)
 ```
 
 **Caveat:** Vue only installs plugins _once_. If you import a plugin that has already been imported
@@ -126,7 +125,7 @@ before any `Vue.use()` of component plugins.
 
 ### Setting the config via Nuxt.js BootstrapVueArsenic plugin
 
-Refer to the [Getting Started](/docs/#nuxtjs-plugin-module) documentation for information on passing
+Refer to the [Getting Started](/docs/#nuxtjs-module) documentation for information on passing
 the config object to the Nuxt.js plugin module.
 
 ## Disabling BootstrapVueArsenic console warnings

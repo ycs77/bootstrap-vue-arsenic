@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import { mergeData } from 'vue-functional-data-merge'
 import { getComponentConfig } from '../../utils/config'
 
@@ -13,7 +14,7 @@ export const props = {
   },
   variant: {
     type: String,
-    default: () => getComponentConfig(NAME, 'variant')
+    default: () => String(getComponentConfig(NAME, 'variant'))
   },
   rounded: {
     type: Boolean,
@@ -25,7 +26,8 @@ export const props = {
   }
 }
 
-export default {
+// @vue/component
+export default Vue.extend({
   name: NAME,
   functional: true,
   props,
@@ -62,4 +64,4 @@ export default {
 
     return h(props.tag, mergeData(data, componentData), children)
   }
-}
+})

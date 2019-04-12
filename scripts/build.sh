@@ -9,11 +9,13 @@ echo ''
 # Cleanup
 rm -rf dist es
 
-# Compile JS...
-scripts/compile-js.sh
+echo 'Compile JS...'
+node_modules/.bin/rollup -c scripts/rollup.config.js
+echo 'Done.'
+echo ''
 
 echo 'Build ES modules...'
-NODE_ENV=es node_modules/.bin/babel src --out-dir es --ignore 'src/**/*/fixtures,src/**/*.spec.js'
+NODE_ENV=es node_modules/.bin/babel src --out-dir es --ignore 'src/**/*.spec.js'
 echo 'Done.'
 echo ''
 
@@ -40,8 +42,20 @@ node_modules/.bin/terser \
 echo 'Done.'
 echo ''
 
-# Compile SASS...
-scripts/compile-sass.sh
+echo 'Compile SASS...'
+node_modules/.bin/node-sass \
+  --output-style expanded \
+  --source-map true \
+  --source-map-contents true \
+  --precision 6 \
+  scripts/build.scss \
+  dist/bootstrap-vue-arsenic.css
+
+node_modules/.bin/postcss \
+  --config scripts/postcss.config.js \
+  --replace dist/bootstrap-vue-arsenic.css
+echo 'Done.'
+echo ''
 
 echo 'Minify CSS...'
 node_modules/.bin/cleancss \
