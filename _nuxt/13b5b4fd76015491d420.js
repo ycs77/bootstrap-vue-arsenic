@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{615:function(n,e){n.exports='<h1 id="change-log"><span class="bd-content-title">Change Log</span></h1>\n<p>All notable changes to this project will be documented in this file. See\n<a href="https://github.com/conventional-changelog/standard-version">standard-version</a> for commit\nguidelines.</p>\n<h1 id="010-2019-03-05"><span class="bd-content-title">0.1.0 (2019-03-05)</span></h1>\n<p>Install packages</p>\n'}}]);
-//# sourceMappingURL=13b5b4fd76015491d420.js.map
