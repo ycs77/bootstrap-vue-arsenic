@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{619:function(o,c,e){"use strict";e.r(c),c.default={fetch(o){(0,o.redirect)("/docs/components/layout")}}}}]);
+//# sourceMappingURL=47eafb0c16bdff9100ae.js.map

@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{663:function(n,c,o){"use strict";o.r(c),c.default={fetch:function(n){(0,n.redirect)("/docs/components/avatar")}}}}]);
+//# sourceMappingURL=f4051a6388b04369a5b2.js.map
