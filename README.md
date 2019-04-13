@@ -1,6 +1,6 @@
 <p align="center">
 <a href="https://bootstrap-vue-arsenic.js.org">
-  <img src="https://bootstrap-vue-arsenic.js.org/banner.png" width="300px">
+  <img src="https://bootstrap-vue-arsenic.js.org/icon-title.png" width="300px">
 </a>
 
 <br>
